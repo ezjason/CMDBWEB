@@ -1,9 +1,9 @@
 {
-  "name": "@project/atm",
-  "version": "1.1.34",
+  "name": "@project/frame",
+  "version": "0.1.1",
   "description": "整合版前端框架",
   "keywords": [
-    "atm"
+    "frame"
   ],
   "main": "src/index.js",
   "scripts": {
@@ -22,14 +22,7 @@
     "diff-match-patch": "^1.0.0",
     "element-ui": "1.4.3",
     "jquery": "^2.1.1",
-    "underscore": "^1.8.3",
-    "vue": "^2.0.1",
-    "vue-codemirror": "^3.0.8",
-    "vue-echarts": "^2.4.0",
-    "vue-gridster": "^1.0.2",
-    "vue-router": "^2.1.1",
-    "vuex": "^2.0.0",
-    "jsencrypt": "^2.3.1"
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
@@ -51,6 +44,13 @@
     "vue-loader": "10.3.0",
     "vue-template-compiler": "^2.4.2",
     "webpack-bundle-analyzer": "^2.8.2",
-    "webpack-hud": "^0.1.1"
+    "webpack-hud": "^0.1.1",
+    "vue": "^2.0.1",
+    "vue-codemirror": "^3.0.8",
+    "vue-echarts": "^2.4.0",
+    "vue-gridster": "^1.0.2",
+    "vue-router": "^2.1.1",
+    "vuex": "^2.0.0",
+    "jsencrypt": "^2.3.1"
   }
 }
