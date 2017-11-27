@@ -1,0 +1,133 @@
+.login{
+  width: 100%;
+  background-color: #37a8e0;
+  border-color: #37a8e0;
+  padding: 15px;
+  &:hover {
+    background-color: #299dd7;
+    border-color: #299dd7;
+  }
+  &:active {
+    background-color: #2b99c7;
+    border-color: #2b99c7;
+  }
+}
+.forget{
+  border-bottom: 1px solid #e3e3e3;
+  text-align: center;
+  height: 34px;
+  margin-bottom: 20px;
+  line-height: 1px;
+}
+.forget span{
+  position: relative;
+  bottom: -32px;
+  background: #fff;
+  padding: 0 10px;
+  color: #888888;
+  font-size: 12px;
+}
+.blockBanner{
+  height: 297px;
+  background-image: url("../img/block_bg_Gradient.jpg");
+  background-position: center;
+  padding-top: 130px;
+  margin-bottom: 40px;
+  overflow: hidden;
+}
+.logo{
+  //background: url("../img/logo-pure.png") no-repeat center;
+  height: 32px;
+}
+.logoTitle{
+  padding-top: 22px;
+  font-size: 24px;
+  text-align: center;
+  color: #fff;
+  letter-spacing: 8px;
+  line-height: 24px;
+}
+.el-1{
+  position: absolute;
+  background: url("../img/el1.png") no-repeat;
+  top: 20px;
+  left: 50%;
+  margin-left: -275px;
+  width: 550px;
+  height: 414px;
+  animation: rotate-el1 7s infinite linear;
+}
+@keyframes rotate-el1{
+  0%   {transform:rotate(10deg)}
+  50%   {transform:rotate(40deg)}
+  100% {transform:rotate(10deg)}
+}
+
+.el-2{
+  position: absolute;
+  background: url("../img/el2.png") no-repeat;
+  top: -13px;
+  left: 50%;
+  margin-left: -247px;
+  width: 494px;
+  height: 494px;
+  animation: rotate-el2 10s infinite linear;
+}
+@keyframes rotate-el2{
+  0%   {
+    transform:rotate(0deg) scale(1,1);
+  }
+  50%   {
+    transform:rotate(-10deg) scale(1.05,1.05);
+  }
+  100% {
+    transform:rotate(-20deg) scale(1,1);
+  }
+}
+
+.el-3{
+  position: absolute;
+  background: url("../img/el3_new.png") no-repeat center;
+  top: 5px;
+  left: 50%;
+  margin-left: -230px;
+  width: 460px;
+  height: 460px;
+  animation: rotate-el3 3s infinite linear;
+}
+@keyframes rotate-el3{
+  0%   {
+    transform:rotate(0deg);
+  }
+  50%   {
+    transform:rotate(10deg);
+  }
+  100% {
+    transform:rotate(20deg);
+  }
+}
+
+.el-4{
+  position: absolute;
+  background: url("../img/el4.png") no-repeat;
+  top: -260px;
+  left: 50%;
+  margin-left: -540px;
+  width: 1080px;
+  height: 990px;
+  animation: rotate-el4 30s infinite linear;
+}
+@keyframes rotate-el4{
+  0%   {
+    transform:rotate(0deg);
+  }
+  50%   {
+    transform:rotate(-180deg);
+  }
+  100% {
+    transform:rotate(-360deg);
+  }
+}
+.remember-password{
+  margin: -18px 0 4px;
+}

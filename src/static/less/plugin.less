@@ -1,0 +1,338 @@
+.CodeMirror {
+  background: #f7f8f9;
+  border: 1px solid #e3e9ee;
+  .CodeMirror-gutters,.CodeMirror-linenumbers{
+    background: #e3e9ee;
+    border-right:0 ;
+  }
+  .CodeMirror-linenumber{
+    text-align: center;
+    color: #555555;
+  }
+}
+
+.el-dropdown-menu{
+  font-size: 12px;
+  margin-top: 0;
+}
+
+.el-tree{
+  background-color: #f8f8f8;
+  border: none;
+  color: #555;
+  .el-tree-node__content{
+    height: 30px;
+    line-height: 30px;
+    display: flex;
+  }
+  .el-tree-node__label{
+    display: block;
+    font-size: 12px;
+    padding-right: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .el-tree-node__expand-icon{
+    width: auto;
+    height: auto;
+    border: none;
+    font-size: 14px;
+    font-family: FontAwesome;
+    color: #999;
+    vertical-align: top;
+  }
+  .el-tree-node__expand-icon.expanded{
+    color: #000;
+  }
+  .el-tree-node__expand-icon.is-leaf{
+    visibility: hidden;
+  }
+  .el-tree-node__expand-icon:before{
+    content: '\f105';
+  }
+  >.el-tree-node{
+    >.el-tree-node__content{
+      background-color: #ebf2f6;
+      >.el-tree-node__label{
+        font-family: FontAwesome;
+        color: #576c85;
+        &:before{
+          content: '\f07b';
+          margin-right: 8px;
+          color:#6cafe7;
+          font-size: 16px;
+          vertical-align: top;
+        }
+      }
+    }
+    >.el-tree-node__children>.el-tree-node>.el-tree-node__content>.el-tree-node__label{
+      font-family: FontAwesome;
+      &:before{
+        content: '\f15c';
+        margin-right: 8px;
+        color: #92a7c0;
+      }
+    }
+  }
+  .el-tree--highlight-current {
+    .el-tree-node.is-current > .el-tree-node__content {
+      background-color: transparent;
+      .el-tree-node__label {
+        color: #37a8e0;
+      }
+    }
+    > .el-tree-node.is-current > .el-tree-node__content {
+      background-color: #ebf2f6;
+      .el-tree-node__label {
+        color: #37a8e0;
+      }
+    }
+  }
+
+}
+
+/* element表单全局样式覆盖 */
+.el-input {
+  .el-input__inner {
+    height: 30px;
+    line-height: 30px;
+    border-color: #dcdcdc;
+    color: #617083;
+    font-size: 12px;
+    &:hover {
+      border-color: #bfbfbf;
+    }
+    &:focus {
+      border-color: #a1dbf8;
+    }
+  }
+  .el-input-group__append, .el-input-group__prepend {
+    border-color: #dcdcdc;
+  }
+  font-size: 12px;
+  vertical-align: top;
+}
+
+.el-form {
+  .el-form-item__label {
+    font-size: 12px;
+  }
+  .el-form-item__content {
+    line-height: 30px;
+  }
+}
+
+.el-textarea__inner {
+  border-color: #dcdcdc;
+  font-size: 12px;
+  color: #617083;
+  &:hover {
+    border-color: #bfbfbf;
+  }
+  &:focus {
+    border-color: #a1dbf8;
+  }
+}
+.el-cascader{
+  width: 100%;
+  .el-cascader__label {
+    font-size: 12px;
+    color: #617083;
+  }
+}
+
+.el-checkbox {
+  .el-checkbox__label {
+    font-size: 12px;
+  }
+}
+
+
+.el-input-number{
+  .el-input-number__decrease, .el-input-number__increase{
+    top: 0;
+  }
+}
+/* 表单主体按钮 */
+.main-button {
+  background-color: #2ec5ba;
+  border-color: #2ec5ba;
+  color: #fff;
+  &:hover {
+    background-color: #2ec5ba;
+    border-color: #2ec5ba;
+    color: #fff;
+  }
+}
+
+/* 表单底部按钮 */
+.bottom-button-wrapper{
+  &:after{
+    content: '';
+    display: table;
+    clear: both;
+  }
+  .bottom-button{
+    float: left;
+  }
+}
+.bottom-button{
+  height: 30px;
+  line-height: 1;
+  font-size: 12px;
+  background-color: #37a8e0;
+  border-color: #37a8e0;
+  padding: 0 20px;
+  color: #fff;
+  &:focus {
+    background-color: #299dd7;
+    border-color: #299dd7;
+    color: #fff;
+  }
+  &:hover {
+    background-color: #299dd7;
+    border-color: #299dd7;
+    color: #fff;
+  }
+  &:active {
+    background-color: #2b99c7;
+    border-color: #2b99c7;
+    color: #fff;
+  }
+  +.bottom-button{
+    margin-left: 4px;
+  }
+}
+.bottom-button-close {
+  background-color: #e8eff6;
+  border-color: #e8eff6;
+  color: #8098b6;
+  &:focus {
+    background-color: #dfe8f0;
+    border-color: #dfe8f0;
+    color: #8098b6;
+  }
+  &:hover {
+    background-color: #dfe8f0;
+    border-color: #dfe8f0;
+    color: #8098b6;
+  }
+  &:active {
+    background-color: #dae3eb;
+    border-color: #dae3eb;
+    color: #8098b6;
+  }
+}
+
+/* 表单选择主机 */
+.select-host {
+  border-radius: 5px;
+  margin-bottom: 22px;
+  overflow: hidden;
+  &-has-list{
+    border: 1px solid #ececec;
+    &-hd{
+      padding: 5px 9px 6px;
+    }
+  }
+  &-hd {
+    padding: 6px 10px;
+    background-color: #f5f5f5;
+    border-radius: 0 0 5px 5px;
+    &:after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+    >span {
+      line-height: 30px;
+      color: #3c495a;
+    }
+  }
+  &-button {
+    float: right;
+    background-color: #5dc1f3;
+    border-color: #5dc1f3;
+    padding: 8px 16px;
+    font-size: 12px;
+    color: #fff;
+    &:hover {
+      background-color: #5dc1f3;
+      border-color: #5dc1f3;
+      color: #fff;
+    }
+    &[disabled], &[disabled]:hover {
+      background-color: #c3e5f6;
+      border-color: #c3e5f6;
+      color: #fff;
+    }
+  }
+  &-bd {
+    padding: 6px 10px;
+  }
+  &-item {
+    display: inline-block;
+    font-size: 12px;
+    background-color: #f0f6f9;
+    color: #8098b6;
+    margin-right: 4px;
+    line-height: 1;
+    padding: 6px;
+    border-radius: 2px;
+  }
+}
+
+.el-select{
+  .el-select__tags-text{
+    max-width: 88px;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+  }
+}
+/* */
+.el-table-filter{
+  .el-table-filter__content,
+  .el-table-filter__list{
+    max-height: 250px;
+    overflow: auto;
+  }
+}
+.el-table {
+  font-size: 12px;
+  td, th{
+    height: 30px;
+  }
+
+  .el-table__fixed-body-wrapper {
+    padding-bottom: 6px;
+  }
+  .el-table-column--selection .cell {
+    padding-left: 6px;
+    padding-right: 6px;
+    .el-checkbox__inner {
+      width: 15px;
+      height: 15px;
+    }
+    .el-checkbox__inner::after {
+      top: 2px;
+      left: 4px;
+      height: 6px;
+      width: 3px;
+    }
+  }
+  .el-table--fluid-height .el-table__fixed, .el-table--fluid-height .el-table__fixed-right {
+    z-index: 0;
+  }
+}
+
+.el-progress {
+  .el-progress-bar__inner{
+    transition: width .5s;
+  }
+}
+
+.el-popover{
+  min-width: 100px;
+}

@@ -1,0 +1,342 @@
+
+/*以下是表单的基本样式*/
+form.jump-one,form.jump-two,form.page-one,form.page-two{
+  margin:10px auto;
+  overflow: hidden;
+  .form-group{
+    padding:0;
+    overflow: hidden;
+    label{
+      height:29px;
+      width:100%;
+      padding:5px 0;
+      font-size:14px;
+      text-align: left;
+    }
+    div{
+      width:100%;
+      padding:0;
+      text-align: right;
+      input[type=text],input[type=password]{
+        height: 30px;
+        width: 100%;
+        padding: 0 5px;
+        color: #617083;
+        font-size: 12px;
+        box-sizing: border-box;
+        border: 1px solid #dcdcdc;
+        border-radius: 3px;
+        transition: 0.42s;
+
+        &:focus{
+          border:1px solid #37a8e0;
+          box-shadow: none;
+        }
+        &:hover{
+          border-color: #bfbfbf;
+          box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px inset;
+        }
+      }
+      select{
+        height: 30px;
+        padding-left: 8px;
+        outline: none;
+        border-radius: 3px;
+        color: #5f7088;
+        width: 100%;
+        border: 1px solid #dcdcdc;
+        &:hover{
+          border-color: #bfbfbf;
+          box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px inset;
+        }
+        &:focus{
+          border:1px solid #37a8e0;
+          box-shadow: none;
+        }
+      }
+    }
+    &:last-child{
+      div{
+        button,input[type=button]{
+          &:focus{
+            outline:none;
+          }
+          &:first-child{
+            background-color: #37a8e0;
+            display: inline-block;
+            color: #ffffff;
+            padding: 0;
+            border: none;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 0px;
+            cursor: pointer;
+            font-size: 12px;
+            width: 70px;
+            height: 30px;
+            &:hover{
+              background-color: #299dd7;
+            }
+          }
+          &:last-child{
+            background-color: #e8eff6;
+            display: inline-block;
+            color: #8098b6;
+            border: none;
+            padding: 0;
+            border-radius: 0px;
+            width: 70px;
+            font-size: 12px;
+            text-align: center;
+            line-height: 30px;
+            height: 30px;
+            cursor: pointer;
+            &:hover{
+              background-color: #dfe8f0;
+              text-decoration: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+//页面表单
+form.page-one,form.page-two{
+  width:760px;
+  margin: 10px auto;
+  .col-md-offset-3{
+    margin:0;
+  }
+}
+//页面单列
+form.page-one{
+  padding:0 10px;
+}
+//页面双列
+form.page-two{
+  .form-group{
+    float: left;
+    width: 360px;
+    margin:0 10px;
+  }
+}
+//弹出单列
+form.jump-one{
+  width:360px;
+  .form-group{
+    &:last-child{
+      margin-top:2%;
+    }
+  }
+}
+//弹出双列
+form.jump-two{
+  width:550px;
+  .form-group{
+    float: left;
+    width: 48%;
+    margin:0 1%;
+    &:last-child{
+      width:98%;
+      margin-top:2%;
+    }
+  }
+}
+/*以上是表单的基本样式*/
+
+
+//修改layer的样式
+.layui-layer-page .layui-layer-title {
+  color: #3c454e;
+  background-color: #f2f5fa;
+  padding: 0 80px 0 20px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border: none;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.layui-layer-btn{
+  text-align:right;
+  a{
+    margin:0 0 0 5px;
+    border-radius:0px;
+  }
+  a:last-child{
+      margin-right:20px;
+  }
+}
+//修改layer的样式结束
+
+//简单的table表格样式
+.easy-table,.easy-table-add{
+  width: 100%;
+  border: 1px solid #dcdcdc;
+  table-layout: fixed;
+  border-spacing: 0;
+  border-collapse: collapse;
+  thead{
+    tr{
+      background-color: #f4f4f4;
+      td,th{
+        padding: 5px 5px;
+        min-height: 35px;
+        text-align: left;
+        border-left: 1px solid #dcdcdc;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        word-break: break-all;
+        font-size: 12px;
+        color: #3c495a;
+        font-weight: 700;
+      }
+    }
+  }
+  tbody{
+    tr{
+      td{
+        padding: 5px 5px;
+        font-size: 12px;
+        min-height: 35px;
+        border-left: 1px solid #dcdcdc;
+        overflow: hidden;
+        text-align: left;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        word-break: break-all;
+        color: #617083;
+        border-top: 1px solid #dcdcdc;
+      }
+    }
+  }
+}
+.easy-table-add{
+  thead{
+    tr{
+      td,th{
+        &:last-child{
+          width:70px;
+          text-align: center;
+        }
+      }
+    }
+  }
+  tbody{
+    tr{
+      td{
+        &:last-child{
+          width:70px;
+          text-align: center;
+          a{
+            text-decoration: none;
+            font-size:20px;
+            color: #5A738E;
+            &:hover{
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+//简单的table表格样式结束
+
+//apm的样式
+.apm-ctrl {
+  margin: 0;
+  background-color: #f1f5f6;
+  height: 31px;
+  clear: both;
+  border-bottom: 1px #d3d3d3 solid;
+}
+.apm-ctrl .fleft {
+  margin: 0 8px 0 0;
+  float: left;
+}
+.sct-wrap {
+  color: #fff;
+  background-color: #eceaeb;
+}
+.sct-wrap select.sct-fix {
+  margin: 0;
+  width: 120px;
+  padding: 0 0 0 9px;
+  background: #1688aa none;
+  border: 0 #fff solid;
+  color: #fff;
+  height: 30px;
+}
+
+.apm-ctrl .ac-1, .apm-ctrl .ac-3 {
+  margin: 6px 8px 0 6px;
+  font-size: 12px;
+}
+
+.setBlock .rightBlock {
+  margin-top: 0 !important;
+}
+.setBlock> .row> .col-xs-9>.chart-wp:nth-child(1) {
+  //margin-top: 0px;
+}
+.setBlock> .row> .col-xs-9>.chart-wp {
+  margin-bottom: 0;
+}
+.chart-wp {
+  margin: 10px 0;
+  position: relative;
+  background-color: #fff;
+  overflow: hidden;
+  width: 100%;
+}
+.chart-bd {
+  position: relative;
+  margin: 0 10px 12px 10px;
+}
+.chart-wp .chart-hd {
+  clear: both;
+  font-size: 14px;
+  color: #4a4a4a;
+  padding: 12px 0 12px;
+  border-bottom: 1px #dbdbdb solid;
+  margin: 0 10px 12px 10px;
+  font-weight: normal;
+}
+
+.apm-bg-block{
+  background-color: #ececec;
+  padding-bottom:10px;
+  .col-sm-6{
+    padding-left:5px;
+    padding-right:5px;
+    .chart-wp{
+      margin-top:5px;
+      margin-bottom: 0px;
+    }
+  }
+  .col-xs-3{
+    .col-sm-6;
+    border:5px solid #ececec;
+    border-top:0px;
+    margin-top:5px;
+  }
+  .col-xs-6{
+    .col-sm-6;
+  }
+  .col-xs-9{
+    .col-sm-6;
+  }
+  .col-xs-12{
+    .col-sm-6;
+  }
+}
+
+//apm的样式结束
+

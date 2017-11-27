@@ -1,0 +1,483 @@
+#sortScriptForm {
+    .afs-input {
+        display: inline-block;
+        width: 200px;
+    }
+
+    .afs-textarea {
+        display: inline-block;
+        width: 100%;
+        vertical-align: middle;
+    }
+
+    .afs-btn {
+        text-align: right;
+    }
+
+    .afs-paramBox {
+        width: 100%;
+        border: 1px dotted #ccc;
+        padding: 10px;
+        border-radius: 5px;
+        position: relative;
+    }
+
+    .param-box {
+        /*padding: 0 5px;*/
+        border-radius: 5px;
+    }
+
+    .param-box .el-input {
+        width: 200px;
+        font-size: 12px;
+    }
+
+    .param-btn {
+        width: 200px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .afs-paramBody {
+        position: relative;
+        padding-bottom: 4px;
+        z-index: 2;
+        overflow: hidden;
+        &:nth-last-child(2) {
+            padding-bottom: 0;
+        }
+    }
+
+    .sort-left{
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+        text-align: center;
+        border-radius: 50%;
+        display: block;
+        color: #fb9c3f;
+        border: 2px solid #fb9c3f;
+        font-size: 12px;
+        margin-top: 8px;
+        float: left;
+        background: #fff;
+        &-blue {
+            color: #13b6ce;
+            border-color: #13b6ce;
+        }
+    }
+
+    .sort-right {
+        display: block;
+        margin-left: 50px;
+        border-radius: 5px;
+        overflow: hidden;
+        .param-item {
+            background: #f5f5f5;
+            padding: 6px 10px;
+            border-radius: 0 0 5px 5px;
+            .el-button {
+                background-color: #5dc1f3;
+                border-color: #5dc1f3;
+                padding: 8px;
+            }
+            &-buttons {
+                float: right;
+                .el-button {
+                    background-color: #fff;
+                    border-color: #dcdcdc;
+                    color: #999;
+                    &:hover {
+                        color: #37a8e0;
+                        background-color: #ebfaff;
+                        border-color: #abd4e5;
+                    }
+                    &.is-disabled,
+                    &.is-disabled:hover {
+                        color: #d4d4d4;
+                        background-color: #f6f6f6;
+                        border-color: #e1e1e1;
+                    }
+                }
+            }
+        }
+        &-edit {
+            border: 1px solid #ececec;
+            .param-item {
+                padding: 5px 9px 6px;
+            }
+        }
+    }
+
+    .sort-left::after {
+        content: "   ";
+        position: absolute;
+        left: 11px;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        border-left: 1px solid #e5e5e5;
+        z-index: -1;
+    }
+
+    .afs-paramBody:first-child .sort-left:after {
+        top: 10px;
+        height: 100%;
+    }
+
+    .afs-paramBody:nth-last-child(2) .sort-left:after {
+        height: 10px;
+    }
+
+    .afs-paramForm {
+        width: 100%;
+        /*border: 1px #eee dotted;*/
+        margin-bottom: 5px;
+        display: none;
+        padding-bottom: 10px;
+    }
+
+    .isParamForm {
+        display: block;
+    }
+
+    .fp-box {
+        padding-top: 10px;
+        font-size: 12px;
+    }
+
+    .fp-input {
+        width: 150px;
+    }
+
+    .fp-title {
+        display: inline-block;
+        width: 100px;
+        text-align: right;
+    }
+
+    .must-icon::before {
+        content: "*";
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 14px;
+        color: red;
+    }
+
+    .e-pageiantion {
+        text-align: right;
+        margin-bottom: 10px;
+    }
+    .e-table {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .e-host-box {
+        border-radius: 4px;
+        background-color: #ddd;
+        padding: 0 5px;
+        margin: 0 10px 0 100px;
+    }
+
+    .e-host-param-box {
+        padding: 6px 10px;
+    }
+
+    .e-host-main {
+        display: inline-block;
+        font-size: 12px;
+        background-color: #f0f6f9;
+        color: #8098b6;
+        margin-right: 4px;
+        line-height: 1;
+        padding: 6px;
+        -webkit-border-radius: 2px;
+        border-radius: 2px;
+        i {
+            -webkit-transform: scale(.7);
+            transform: scale(.7);
+            cursor: pointer;
+        }
+    }
+
+    .fp-desc {
+        margin-left: 106px;
+        color: #bfcbd9;
+        line-height: 20px;
+    }
+
+    .error-tip {
+        color: #ff4949;
+        font-size: 12px;
+        line-height: 1;
+        padding-top: 4px;
+        display: inline-block;
+        margin-left: 5px;
+    }
+
+    .e-search {
+        text-align: left;
+        margin-bottom: 10px;
+    }
+
+    .hideEle {
+        display: none;
+    }
+
+    .vModal {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: .5;
+        background: #000;
+        z-index: 10;
+    }
+    .vWrapper {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        width: 1000px;
+        max-height: 500px;
+        margin-left: -500px;
+        margin-top: -250px;
+        z-index: 100;
+        background-color: #fff;
+        border-radius: 4px;
+        overflow: auto;
+        padding: 15px;
+    }
+
+    .vBtn {
+        text-align: center;
+    }
+
+    .vPage {
+        text-align: right;
+        margin: 10px 0;
+    }
+    .vSearch {
+        text-align: right;
+        margin-bottom: 10px;
+    }
+
+    .e-btn {
+        text-align: center;
+    }
+
+    .elTabsBox {
+        overflow: auto;
+    }
+
+    .paramDesc {
+        font-size: 12px;
+        color: #999;
+        line-height: 1;
+        margin-left: 100px;
+    }
+
+    .sortBody {
+        width: 744px;
+        margin: 0 auto;
+    }
+
+    .formLabel {
+        font-size: 12px;
+        color: #3c495a;
+        line-height: 1;
+        margin-bottom: 10px;
+    }
+    .sortParamBody {
+        border-radius: 5px;
+        overflow: hidden;
+        .sortParamForm {
+            padding: 6px 10px;
+            background-color: #f5f5f5;
+            border-radius: 0 0 5px 5px;
+        }
+        &Selected {
+            border: 1px solid #ececec;
+            .sortParamForm {
+                padding: 5px 9px 6px;
+            }
+        }
+        .el-input {
+            width: 210px;
+            font-size: 12px;
+            height: 30px;
+            line-height: 1;
+        }
+        .selectHostBtn {
+            width: 210px;
+            background-color: #5dc1f3;
+            border-color: #5dc1f3;
+        }
+
+        .iconParam {
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        .iconTextParam {
+            background: url("../../static/img/icon_text.png") center no-repeat;
+        }
+        .iconHostParam {
+            background: url("../../static/img/icon_host.png") center no-repeat;
+        }
+        .delSortParamRow {
+            padding: 8px;
+            color: #999;
+            float: right;
+            border-color: #dcdcdc;
+        }
+        .delSortParamRow:hover {
+            color: #37a8e0;
+            background-color: #ebfaff;
+            border-color: #abd4e5;
+        }
+    }
+
+    .createSortParam {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: inline-block;
+        .sortParamModelBox {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: -26px;
+            left: 155px;
+            background-color: rgb(63, 70, 77);
+            opacity: .84;
+            z-index: 10;
+            border-radius: 5px;
+        }
+        .sortParamModelArrow {
+            width: 15px;
+            height: 15px;
+            position: absolute;
+            background-color: rgb(63, 70, 77);
+            z-index: 10;
+            top: 36px;
+            left: -7px;
+            transform: rotate(45deg);
+        }
+        .sortParamBtnBox {
+            position: relative;
+            top: -26px;
+            left: 155px;
+            z-index: 11;
+            padding: 12px 18px;
+        }
+        .createParamBtn:hover .createParamTitle {
+            color: #37a8e0;
+        }
+        .createParamBtn {
+            display: inline-block;
+            cursor: pointer;
+        }
+        .createParamTextIcon {
+            width: 42px;
+            height: 42px;
+            background: url("../../static/img/btn_text.png") center no-repeat;
+        }
+        .createParamTitle {
+            line-height: 1;
+            font-size: 12px;
+            color: #fff;
+            text-align: center;
+            margin-top: 5px;
+        }
+    }
+
+    .authorUserGroupBtn {
+        background-color: #2ec5ba;
+        border-color: #2ec5ba;
+    }
+
+    .sortParamBtn {
+        background-color: #2ec5ba;
+        border-color: #2ec5ba;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .sortSaveBody {
+        border-top: 1px solid #e5e5e5;
+        margin-top: 20px;
+        padding: 10px 0;
+    }
+
+    .sorttTaskBox {
+        width: 100%;
+        position: relative;
+        &Buttons {
+            padding-top: 10px;
+            border-top: 1px solid #e5e5e5;
+            margin-top: 10px;
+        }
+    }
+    .createScriptBtn {
+        background-color: #fb9c3f;
+        border-color: #fb9c3f;
+    }
+    .createSortBtn {
+        background-color: #13b6ce;
+        border-color: #13b6ce;
+    }
+    .ml0 {
+        margin-left: 0;
+    }
+    .ml16 {
+        margin-left: 16px;
+    }
+    .ml20 {
+        margin-left: 20px;
+    }
+    .mt16 {
+        margin-top: 16px;
+    }
+
+    .mb5 {
+        margin-bottom: 5px;
+    }
+    .w100 {
+        width: 100px;
+    }
+
+    .w220 {
+        width: 220px;
+    }
+
+    .w60 {
+        width: 60px;
+    }
+
+    .w360 {
+        width: 360px;
+    }
+
+    .w228 {
+        width: 228px;
+    }
+
+    .displayIB {
+        display: inline-block;
+    }
+
+    .floatR {
+        float: right;
+    }
+
+    .positionRela {
+        position: relative;
+        height: 36px;
+        margin-top: 10px;
+    }
+}

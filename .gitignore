@@ -1,8 +1,5 @@
-.node_modules
 .idea
-node_modules
 .DS_Store
-node_modules/
-src/luozheao/
-build/
+build
 .project
+node_modules
