@@ -4,7 +4,9 @@ var nodeExternals = require('webpack-node-externals');
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 cooking.set({
-    entry: './src/index.js',
+    entry: {
+        'frame.min.js':['babel-polyfill', './src/index.js'],
+    },
     dist: './build',
     // production
     clean: true,
