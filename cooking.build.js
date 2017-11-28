@@ -4,9 +4,7 @@ var nodeExternals = require('webpack-node-externals');
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 cooking.set({
-    entry: {
-        'frame': './src/index.js',
-    },
+    entry: './src/index.js',
     dist: './build',
     // production
     clean: true,
@@ -18,20 +16,12 @@ cooking.set({
         // require('...')
     ],
     extractCSS: false,//'[name].[contenthash:7].css'
-    externals: [{
-        vue: 'vue',
-        jquery:'jquery',
-        underscore:'underscore',
-        'element-ui':'element-ui',
-    }, nodeExternals()],
-    alias: {
-        'vue': 'vue/dist/vue.min',
-    },
+    externals: [nodeExternals()],
     extends: ['vue2','less']//lint
 });
 
 
-cooking.add('output.filename', '[name].min.js');
+cooking.add('output.filename', 'frame.min.js');
 cooking.add('loader.js.exclude', /node_modules/);
 cooking.add('vue.preserveWhitespace', false);
 
