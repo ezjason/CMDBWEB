@@ -3,10 +3,6 @@ var cooking = require('cooking');
 var nodeExternals = require('webpack-node-externals');
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-console.log([{
-    vue: 'vue'
-}, nodeExternals()]);
-
 cooking.set({
     entry: {
         'frame': './src/index.js',
