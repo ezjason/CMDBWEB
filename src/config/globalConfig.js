@@ -9,7 +9,7 @@ import "../static/less/plugin.less";
 
 //字体样式
 import "../static/iconFont/css/iconFont.css";
-import "../static/fontAwesome/css/font-awesome.min.css";
+import "../static/fontAwesome/css/font-awesome.css";
 
 //兼容console处理
 if(!window.console){

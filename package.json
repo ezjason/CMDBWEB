@@ -1,11 +1,11 @@
 {
   "name": "@project/frame",
-  "version": "0.1.3",
+  "version": "0.1.6",
   "description": "整合版前端框架",
   "keywords": [
     "frame"
   ],
-  "main": "build/frame.js",
+  "main": "build/frame.min.js",
   "scripts": {
     "dev": "cooking watch -p",
     "dist": "cooking build -p",
@@ -15,11 +15,8 @@
     "test": "cooking test karma start --single-run",
     "eslint": "eslint src"
   },
-
   "license": "ISC",
   "dependencies": {
-    "codemirror": "^5.30.0",
-    "diff-match-patch": "^1.0.0",
     "element-ui": "1.4.3",
     "jquery": "^2.1.1",
     "underscore": "^1.8.3"
@@ -41,16 +38,17 @@
     "eslint": "^3.14.0",
     "eslint-plugin-vue": "^1.0.0",
     "eslint-plugin-vuefix": "^0.1.0",
-    "vue-loader": "10.3.0",
-    "vue-template-compiler": "^2.4.2",
-    "webpack-bundle-analyzer": "^2.8.2",
-    "webpack-hud": "^0.1.1",
+    "jsencrypt": "^2.3.1",
     "vue": "^2.0.1",
     "vue-codemirror": "^3.0.8",
     "vue-echarts": "^2.4.0",
     "vue-gridster": "^1.0.2",
+    "vue-loader": "10.3.0",
     "vue-router": "^2.1.1",
+    "vue-template-compiler": "^2.4.2",
     "vuex": "^2.0.0",
-    "jsencrypt": "^2.3.1"
+    "webpack-bundle-analyzer": "^2.8.2",
+    "webpack-hud": "^0.1.1",
+    "webpack-node-externals": "^1.6.0"
   }
 }
