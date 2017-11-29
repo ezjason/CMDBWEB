@@ -13,6 +13,7 @@
             margin-right: 0;
             &+.searchBtn{
                 margin-right: 0;
+                margin-left: 5px;
             }
         }
     }
