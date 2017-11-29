@@ -4,6 +4,9 @@ import 'element-ui/lib/theme-default/index.css'
 //全局统一样式(含登陆界面样式)
 import "../static/less/again.less";
 
+//vue过渡动画样式
+import "../static/less/animate.less";
+
 //全局组件样式(含element-ui的覆盖样式)
 import "../static/less/plugin.less";
 

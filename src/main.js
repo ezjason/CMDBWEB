@@ -7,6 +7,15 @@ import ElementUI from 'element-ui'
 import './config/globalConfig'
 import routes from './config/router'
 import vuePlugin from './vuePlugin/index'
+import atm from '@project/atm'
+import menu from './data/menu'
+
+
+
+for(let m of atm.menu){
+    menu.push(m)
+}
+
 
 const isProd = process.env.NODE_ENV === 'production';
 Vue.config.devtools = !isProd;

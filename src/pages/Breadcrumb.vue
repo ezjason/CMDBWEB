@@ -35,12 +35,19 @@
         }
     }
 </style>
+<style lang="less">
+    .el-breadcrumb__separator:after{
+        content: '/';
+    }
+</style>
 
 <template>
     <div id="Breadcrumb" :class="{shrink:shrink}" v-if="hash.key!=='index'">
         <i class="ace-icon fa fa-home home-icon"></i>
         <el-breadcrumb separator="/">
-            <el-breadcrumb-item v-for="(item, index) in showFind" ><span @click="pathClick(item)">{{item.label||item}}</span></el-breadcrumb-item>
+            <transition-group name="list" tag="div">
+                <el-breadcrumb-item v-for="(item, index) in showFind" :key="item.label"><span @click="pathClick(item)">{{item.label||item}}</span></el-breadcrumb-item>
+            </transition-group>
         </el-breadcrumb>
         <div class="rightBtn" v-if="appendPath.length">
             <el-button size="small" @click="back">

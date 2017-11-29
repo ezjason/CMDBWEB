@@ -1,0 +1,17 @@
+.router-fade-enter-active, .router-fade-leave-active {
+  transition: opacity .3s;
+}
+.router-fade-enter, .router-fade-leave-active {
+  opacity: 0;
+}
+
+
+
+.list-enter-active, .list-leave-active {
+  transition: all .5s;
+  position: absolute;
+}
+.list-enter, .list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
