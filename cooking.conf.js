@@ -20,7 +20,7 @@ cooking.set({
         }
     ],
     devServer: {
-        port: 8082,//本地访问端口
+        port: 8080,//本地访问端口
         publicPath: '/',
         proxy: {
             '/': {
