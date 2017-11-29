@@ -38,32 +38,12 @@
     .gray {
         background-color: #ECECEC;
     }
-    .loading{
-        filter:blur(1px);
-        &:after{
-            content: ' ';
-            position: absolute;
-            display: block;
-            opacity: 1;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            text-align: center;
-        }
-    }
-
 
 </style>
 
 <template>
-    <div :class="{rightBody:!isOptionPage,optionPage:isOptionPage,gray:isGray,shrink:shrink}">
-        <component :class="{loading:loading}" :is="getType" :data="getData" :param="getData"></component>
-        <transition name="el-fade-in">
-            <div v-show="loading" class="iconBox">
-                <i class="el-icon-loading"></i>
-            </div>
-        </transition>
+    <div v-loading="loading" :class="{rightBody:!isOptionPage,optionPage:isOptionPage,gray:isGray,shrink:shrink}">
+        <component :is="getType" :data="getData" :param="getData"></component>
         <link-box></link-box>
     </div>
 </template>

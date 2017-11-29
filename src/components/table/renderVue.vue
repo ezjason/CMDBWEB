@@ -3,7 +3,7 @@
 </style>
 
 <template>
-<div id="tableList">
+<div id="tableList" v-loading="loading">
 	<div class="main-page" :class="{'minor-page':isShowMinorPage}" style="">
 		<search :hide="table.prop.hideSearch" :dataNumber="dataNumber" :clumns="searchColumn" :btns="btnList" @search="onSearch" @btnClick="onFuncBtns">
 			<span v-if="public.showTitle">{{public.title}}</span>
@@ -121,6 +121,7 @@ export default {
             filterParam:{},
             sortParam:{},
             searchParam: '',
+            loading:false,
 
             btnIcon:{
                 '编辑':'icon-edit',
@@ -388,9 +389,6 @@ export default {
 			}
 	        return width
 		},
-        toggleLoading(data){
-            this.$store.commit('toggleLoading',data)
-		},
         rowClick(row,e){
             if(['TD','DIV'].indexOf(e.target.nodeName)>-1){
                 this.$refs.table.toggleRowSelection(row)
@@ -600,10 +598,10 @@ export default {
 			if (self.searchParam) {
 				Object.assign(table_param.params.condition,self.searchParam);
 			}
-            this.toggleLoading(true);
+            this.loading=true;
             let table_data = await this.$fetch('POST', table_url, table_param);
 			if (!table_data||table_data.msgCode != 200) {
-                this.toggleLoading(false);
+                this.loading=false;
                 return;
 			}
 			if(this.data.onDataLoad){
@@ -614,8 +612,8 @@ export default {
 			self.table.data = table_data.data.records||table_data.data.dataList||table_data.data;
 			self.setPagination(table_data.data);
 
-			this.$nextTick(function(){
-                this.toggleLoading(false);
+			this.$nextTick(()=>{
+                this.loading=false;
                 //回调方法,可以在外面覆盖
                 self.afterRenderTableCallback();
 			})
