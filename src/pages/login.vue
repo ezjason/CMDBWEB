@@ -31,7 +31,7 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="logo"></div>
                 <div class="logoTitle">
-                    {{packageConfig.description}}
+                    自动化运维管理平台
                 </div>
             </div>
             <div class="el-1"></div>
