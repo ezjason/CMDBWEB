@@ -5,7 +5,7 @@
 <template>
 <div id="tableList" v-loading="loading">
     <transition-group name="table" tag="div">
-        <div class="main-page" v-show="!isShowMinorPage">
+        <div class="main-page" :key="1" v-show="!isShowMinorPage">
             <search :hide="table.prop.hideSearch" :dataNumber="dataNumber" :clumns="searchColumn" :btns="btnList" @search="onSearch" @btnClick="onFuncBtns">
                 <span v-if="public.showTitle">{{public.title}}</span>
             </search>
@@ -91,7 +91,7 @@
             </el-row>
             <br>
         </div>
-        <div class="main-page" v-show="isShowMinorPage">
+        <div class="main-page" :key="2" v-show="isShowMinorPage">
             <component ref="pageOpen" @close="close('isShowMinorPage')" @update="update('isShowMinorPage')" :is="getComponent" :data="getData" :param="getData"></component>
         </div>
     </transition-group>
@@ -125,6 +125,7 @@ export default {
             sortParam:{},
             searchParam: '',
             loading:false,
+            a:false,
 
             btnIcon:{
                 '编辑':'icon-edit',
@@ -706,7 +707,7 @@ export default {
 			};
 
 			// 权限开关
-            self.authorization();
+//            self.authorization();
 
 			self.getModule();
 

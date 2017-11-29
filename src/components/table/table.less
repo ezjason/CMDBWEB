@@ -28,83 +28,13 @@
 			}
 		}
 	}
-
-	.minor-page{
-		background: #fff;
-		display: none;
-		.badge{
-			text-shadow: none;
-			font-size: 12px;
-			font-weight: normal;
-			line-height: 15px;
-			background-color: #abbac3;
+	&>div{
+		position: relative;
+		&:after {
+			content: ' ';
 			display: inline-block;
-			min-width: 10px;
-			padding: 3px 7px;
-			color:#fff;
-			text-align: center;
-			white-space: nowrap;
-			vertical-align: middle;
-			border-radius: 10px;
+			clear: both;
 		}
-		.badge-disabled,
-		.label-disabled{
-			background-color:grey;
-		}
-		.badge-info,
-		.label-info{
-			background-color: #f3c62c;
-		}
-		.badge-warning,
-		.label-warning{
-			background-color: #f8a143;
-		}
-		.badge-danger,
-		.label-danger{
-			background-color: #ef4c4c;
-		}
-		.badge-primary,
-		.label-primary {
-			background-color: #48c1b8;
-		}
-		.badge-success,
-		.label-success {
-			background-color: #6ec66a;
-		}
-		.badge-dark,
-		.label-dark {
-			background-color: #d20f0f;
-		}
-		.badge-inverse,
-		.label-inverse {
-			background-color: #d20f0f;
-		}
-
-		.label-grey{
-			background-color: #a0a0a0;
-		}
-		.label-important{
-			background-color: #d15b47;
-		}
-		.label-pink{
-			background-color: #d6487e;
-		}
-		.label-purple{
-			background-color: #9585bf;
-		}
-		.label-yellow{
-			background-color: #fee188;
-		}
-		.label-light{
-			background-color: #e7e7e7;
-		}
-		a {
-			cursor: pointer;
-		}
-	}
-
-	.minor-page-show{
-		display: block;
 	}
 	a{
 		color: #20a0ff;

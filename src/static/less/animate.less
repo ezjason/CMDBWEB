@@ -20,14 +20,34 @@
 }
 
 .table-enter-active {
-  transition: all .5s;
-  position: absolute;
+  transition: all 5s;
 }
 .table-leave-active {
-  transition: all .5s;
+  transition: all 5s;
+  z-index: 1;
+  top:57px;
   position: absolute;
 }
 .table-enter, .table-leave-to {
   opacity: 0;
-  transform: translateX(100%);
+  //transform:scale(0.1,0.1);
+  transform: translateY(100%);
+  //transform: translateX(100%);
+}
+.table-enter-to{
+}
+
+
+.tabs-enter-active {
+  transition: all 5s;
+  z-index: 1;
+}
+.tabs-leave-active {
+  transition: all 5s;
+  position: absolute;
+  z-index: 1;
+}
+.tabs-enter, .tabs-leave-to {
+  opacity: 0;
+  transform: translateY(-100%);
 }

@@ -10,11 +10,20 @@
 </style>
 
 <template>
-    <el-tabs class="tabsRender" :class="{hideHeader:hideHeader}" v-model="active">
-        <el-tab-pane v-for="(tab,index) in data" :label="tab.name" :name="tab.index">
-            <component @onPageOpen="toggle" :is="tab.vue" :data="tab.data"></component>
-        </el-tab-pane>
-    </el-tabs>
+    <div>
+        <transition-group name="tabs" tag="div">
+            <el-tabs class="tabsRender" :key="1" v-show="!hideHeader" v-model="active">
+                <el-tab-pane v-for="(tab,index) in data" :label="tab.name" :name="tab.index">
+                </el-tab-pane>
+            </el-tabs>
+        </transition-group>
+        <el-tabs class="tabsRender" :class="{hideHeader:true}" v-model="active">
+            <el-tab-pane v-for="(tab,index) in data" :label="tab.name" :name="tab.index">
+                <component @onPageOpen="toggle" :is="tab.vue" :data="tab.data"></component>
+            </el-tab-pane>
+        </el-tabs>
+    </div>
+
 </template>
 
 <script>
