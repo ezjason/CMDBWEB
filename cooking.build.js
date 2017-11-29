@@ -29,6 +29,6 @@ cooking.add('vue.preserveWhitespace', false);
 
 var config=cooking.resolve();
 
-config.plugins.push(new BundleAnalyzerPlugin());
+// config.plugins.push(new BundleAnalyzerPlugin());
 
 module.exports = config;
