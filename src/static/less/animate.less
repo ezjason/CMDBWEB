@@ -7,14 +7,27 @@
 
 
 
-.list-enter-active {
+.nav-enter-active {
   transition: all .5s;
 }
-.list-leave-active {
+.nav-leave-active {
   transition: all .5s;
   position: absolute;
 }
-.list-enter, .list-leave-to {
+.nav-enter, .nav-leave-to {
   opacity: 0;
   transform: translateX(30px);
+}
+
+.table-enter-active {
+  transition: all .5s;
+  position: absolute;
+}
+.table-leave-active {
+  transition: all .5s;
+  position: absolute;
+}
+.table-enter, .table-leave-to {
+  opacity: 0;
+  transform: translateX(100%);
 }

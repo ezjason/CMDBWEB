@@ -45,7 +45,7 @@
     <div id="Breadcrumb" :class="{shrink:shrink}" v-if="hash.key!=='index'">
         <i class="ace-icon fa fa-home home-icon"></i>
         <el-breadcrumb separator="/">
-            <transition-group name="list" tag="div">
+            <transition-group name="nav" tag="div">
                 <el-breadcrumb-item v-for="(item, index) in showFind" :key="item.label"><span @click="pathClick(item)">{{item.label||item}}</span></el-breadcrumb-item>
             </transition-group>
         </el-breadcrumb>

@@ -4,95 +4,98 @@
 
 <template>
 <div id="tableList" v-loading="loading">
-	<div class="main-page" :class="{'minor-page':isShowMinorPage}" style="">
-		<search :hide="table.prop.hideSearch" :dataNumber="dataNumber" :clumns="searchColumn" :btns="btnList" @search="onSearch" @btnClick="onFuncBtns">
-			<span v-if="public.showTitle">{{public.title}}</span>
-		</search>
-		<div class="tableList">
-			<el-table
-					v-if="showTable"
-					ref="table"
-					:data="table.data"
-					:stripe="table.prop.stripe"
-					border="true"
-					style="width: 100%"
-					:max-height="table.prop.height"
-					fit
-					highlight-current-row
-					:show-header="table.prop.showTableTop"
-					@row-click="rowClick"
-					@filter-change="filterChange"
-					@sort-change="sortChange"
-					@selection-change="handleSelectionChange">
-				<el-table-column v-if="table.prop.checkbox" type="selection" 	 :selectable="isSelectable" width="31" :fixed="table.data.length > 0&&'left'"></el-table-column>
-				<el-table-column v-if="table.prop.index" type="index" label="序号" width="31"></el-table-column>
-				<el-table-column resizable="true"
-								 v-for="column in data.grid.column"
-								 v-if="!column.hide"
-								 :label="column.name"
-								 :min-width="topTableWidth(column,data.grid.column)"
-								 :sortable="column.sort&&'custom'"
-								 :width="column.$width"
-								 :fixed="column.fixed"
-								 :prop="column.colkey"
-								 :column-key="column.colkey"
-								 :filters="getFilterItem(column)"
-								 :filter-multiple="getFilterMultiple(column)"
-								 show-overflow-tooltip="true">
-					<template scope="scope">
-						<a v-if="column.link" @click.stop="linkClick(scope,column)" v-html='formatterCol(scope,column)'></a>
-						<component v-else-if="column.vue"
-								   :is="column.vue"
-								   @update="getList()"
-								   :data="scope.row"
-								   :vueData="column.vueData"
-								   :value="formatterCol(scope,column)"></component>
-						<span v-else v-html='formatterCol(scope,column)'></span>
-				    </template>
-				</el-table-column>
-				<el-table-column label="操作"
-								 v-if="lineBtn.length"
-								 :width="width"
-								 :fixed="isFixedBtn">
-					<template scope="scope">
-						<el-tooltip v-for="btn in lineBtn"
-									:content="btn.text"
-									:enterable="false"
-									placement="top"
-									hide-after="2000">
-							<el-button size="mini"
-									   @click.stop="onFuncBtns(btn,scope.row)"
-									   :disabled="btn.disabled&&btn.disabled(scope.row,scope.$index,table.data)"
-									   :type="btnIcon[btn.text]?'text':btn.style" v-html="textToIcon(btn.text)">
-							</el-button>
-						</el-tooltip>
-					</template>
-				</el-table-column>
-			</el-table>
-		</div>
-		<br>
-		<el-pagination
-			v-if="public.showPage"
-			style="float: right"
-			:current-page="pagination.pagenum"
-			:page-size="pagination.pagesize"
-			:total="pagination.rowCount"
-			@current-change="pagenumChaneg"
-			@size-change="pagesizeChange"
-			:page-sizes="[10, 20, 30, 40]"
-			layout="total, sizes, prev, pager, next, jumper"></el-pagination>
-		<el-row style="float: left" v-if="bottomBtn.length">
-			<el-button v-for="btn in bottomBtn"
-					   @click="onFuncBtns(btn)"
-					   size="small"
-					   :type="btn.style||'primary'"
-			>{{btn.text}}</el-button>
-		</el-row>
-		<br>
-	</div>
-	<div class="minor-page" :class="{'minor-page-show': isShowMinorPage}">
-		<component ref="pageOpen" @close="close('isShowMinorPage')" @update="update('isShowMinorPage')" :is="getComponent" :data="getData" :param="getData"></component>
-	</div>
+    <transition-group name="table" tag="div">
+        <div class="main-page" v-show="!isShowMinorPage">
+            <search :hide="table.prop.hideSearch" :dataNumber="dataNumber" :clumns="searchColumn" :btns="btnList" @search="onSearch" @btnClick="onFuncBtns">
+                <span v-if="public.showTitle">{{public.title}}</span>
+            </search>
+            <div class="tableList">
+                <el-table
+                        v-if="showTable"
+                        ref="table"
+                        :data="table.data"
+                        :stripe="table.prop.stripe"
+                        border="true"
+                        style="width: 100%"
+                        :max-height="table.prop.height"
+                        fit
+                        highlight-current-row
+                        :show-header="table.prop.showTableTop"
+                        @row-click="rowClick"
+                        @filter-change="filterChange"
+                        @sort-change="sortChange"
+                        @selection-change="handleSelectionChange">
+                    <el-table-column v-if="table.prop.checkbox" type="selection" 	 :selectable="isSelectable" width="31" :fixed="table.data.length > 0&&'left'"></el-table-column>
+                    <el-table-column v-if="table.prop.index" type="index" label="序号" width="31"></el-table-column>
+                    <el-table-column resizable="true"
+                                     v-for="column in data.grid.column"
+                                     v-if="!column.hide"
+                                     :label="column.name"
+                                     :min-width="topTableWidth(column,data.grid.column)"
+                                     :sortable="column.sort&&'custom'"
+                                     :width="column.$width"
+                                     :fixed="column.fixed"
+                                     :prop="column.colkey"
+                                     :column-key="column.colkey"
+                                     :filters="getFilterItem(column)"
+                                     :filter-multiple="getFilterMultiple(column)"
+                                     show-overflow-tooltip="true">
+                        <template scope="scope">
+                            <a v-if="column.link" @click.stop="linkClick(scope,column)" v-html='formatterCol(scope,column)'></a>
+                            <component v-else-if="column.vue"
+                                       :is="column.vue"
+                                       @update="getList()"
+                                       :data="scope.row"
+                                       :vueData="column.vueData"
+                                       :value="formatterCol(scope,column)"></component>
+                            <span v-else v-html='formatterCol(scope,column)'></span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="操作"
+                                     v-if="lineBtn.length"
+                                     :width="width"
+                                     :fixed="isFixedBtn">
+                        <template scope="scope">
+                            <el-tooltip v-for="btn in lineBtn"
+                                        :content="btn.text"
+                                        :enterable="false"
+                                        placement="top"
+                                        hide-after="2000">
+                                <el-button size="mini"
+                                           @click.stop="onFuncBtns(btn,scope.row)"
+                                           :disabled="btn.disabled&&btn.disabled(scope.row,scope.$index,table.data)"
+                                           :type="btnIcon[btn.text]?'text':btn.style" v-html="textToIcon(btn.text)">
+                                </el-button>
+                            </el-tooltip>
+                        </template>
+                    </el-table-column>
+                </el-table>
+            </div>
+            <br>
+            <el-pagination
+                    v-if="public.showPage"
+                    style="float: right"
+                    :current-page="pagination.pagenum"
+                    :page-size="pagination.pagesize"
+                    :total="pagination.rowCount"
+                    @current-change="pagenumChaneg"
+                    @size-change="pagesizeChange"
+                    :page-sizes="[10, 20, 30, 40]"
+                    layout="total, sizes, prev, pager, next, jumper"></el-pagination>
+            <el-row style="float: left" v-if="bottomBtn.length">
+                <el-button v-for="btn in bottomBtn"
+                           @click="onFuncBtns(btn)"
+                           size="small"
+                           :type="btn.style||'primary'"
+                >{{btn.text}}</el-button>
+            </el-row>
+            <br>
+        </div>
+        <div class="main-page" v-show="isShowMinorPage">
+            <component ref="pageOpen" @close="close('isShowMinorPage')" @update="update('isShowMinorPage')" :is="getComponent" :data="getData" :param="getData"></component>
+        </div>
+    </transition-group>
+
 	<el-dialog
 			:title="dialogData.title"
 			v-model="dialogModel">
