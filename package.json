@@ -1,6 +1,6 @@
 {
   "name": "@project/frame",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "整合版前端框架",
   "keywords": [
     "frame"
@@ -10,7 +10,7 @@
     "dev": "cooking watch -p",
     "dist": "cooking build -p",
     "build": "cooking build -p -c cooking.build.js",
-    "npm":"npm run build && cnpm publish",
+    "npm": "npm run build && cnpm publish",
     "docs": "docsify serve docs",
     "deploy": "cooking build --no-color",
     "test": "cooking test karma start --single-run",
@@ -18,11 +18,13 @@
   },
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.17.1",
     "element-ui": "1.4.3",
     "jquery": "^2.1.1",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
+    "@project/atm": "^1.1.48",
     "babel-eslint": "^7.1.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.2",
     "babel-plugin-syntax-jsx": "^6.18.0",

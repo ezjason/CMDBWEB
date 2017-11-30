@@ -124,13 +124,14 @@
                     if(this.checked){
                         this.$storage.set('login',param);
                     }
-                    this.$storage.set('loginKey',{
+                    let loginKey={
                         'snc-token':data.data.certification.token,
                         'account':self.form.account,
-                    });
+                    }
+                    this.$store.commit('setLoginKey',{data:loginKey});
                     this.$router.push('/home/');
                 }else{
-                    this.$storage.set('loginKey',null);
+                    this.$store.commit('setLoginKey',{data:null});
                     this.$storage.set('login',null);
                     this.$storage.set('userInfo',null);
                 }

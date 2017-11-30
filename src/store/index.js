@@ -1,5 +1,8 @@
+import storage from '../vuePlugin/utils/storage'
+
 const strict=true;
 const state = {
+    loginKey:storage.get('loginKey'),
     authorityKey:[],
     appendPath:[],
     pathText:'',
@@ -17,6 +20,10 @@ const localStoragePlugin = store => {
 };
 
 const mutations = {
+    setLoginKey(state,{data}){
+        state.loginKey = data;
+        storage.set('loginKey',data);
+    },
     setAuthorityKey (state,{data}) {
         state.authorityKey = data
     },
