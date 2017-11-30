@@ -709,7 +709,7 @@ export default {
 			};
 
 			// 权限开关
-//            self.authorization();
+            self.authorization();
 
 			self.getModule();
 

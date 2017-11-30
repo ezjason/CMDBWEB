@@ -1,6 +1,5 @@
 import $ from 'jquery'
 import axios from 'axios'
-import { Message } from 'element-ui'
 
 var service = axios.create({
     // baseURL: '',
@@ -23,7 +22,7 @@ export default function (url, data, success) {
         method: 'POST',
         data: JSON.stringify(data),
         headers: {'Content-Type': 'application/json','snc-token':loginKey['snc-token'],path}
-    }).then(function (response) {
+    }).then((response)=> {
         let data=response.data;
         switch (data.msgCode){
             case 400:
@@ -44,7 +43,7 @@ export default function (url, data, success) {
                 break
         }
         success(data)
-    }).catch(function (error) {
+    }).catch((error)=>{
         console.log(error);
     })
 }
