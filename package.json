@@ -1,6 +1,6 @@
 {
   "name": "@project/frame",
-  "version": "0.1.21",
+  "version": "0.1.22",
   "description": "整合版前端框架",
   "keywords": [
     "frame"
@@ -24,7 +24,6 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
-    "@project/atm": "^1.1.48",
     "babel-eslint": "^7.1.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.2",
     "babel-plugin-syntax-jsx": "^6.18.0",
