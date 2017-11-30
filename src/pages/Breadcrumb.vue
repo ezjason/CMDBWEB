@@ -91,11 +91,19 @@
             showFind(){
                 let self=this;
                 let data=self.find(this.menu);
+                let hash;
+                if(data&&data.length){
+                    hash=data.map(val=>{
+                        return val.path
+                    }).join('/')
+                    hash='/home/'+hash;
+                }
                 if(!this.authority){
                     return []
                 }
                 if(_.isArray(data)&&_.last(data)){
-                    _.last(data).click=function () {
+                    _.last(data).click=()=>{
+                        this.$router.push(hash);
                         self.$store.commit('resetModule',{data:'rightBody'});
                     };
                 }
@@ -142,12 +150,12 @@
                 for(let i=0;i<data.length;i++){
                     let relay=data[i];
                     if(relay.path===this.hash.key){
-                        return [{label:relay.name}];
+                        return [{label:relay.name,path:relay.path}];
                     }else{
                         let childData=relay.children;
                         let childObj=childData&&childData.length&&this.find(childData);
                         if(childObj&&childObj.length){
-                            path.push({label:relay.name});
+                            path.push({label:relay.name,path:relay.path});
                             path=path.concat(childObj);
                         }
                     }
