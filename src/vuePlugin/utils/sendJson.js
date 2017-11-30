@@ -10,11 +10,6 @@ var service = axios.create({
 service.interceptors.response.use(
     response => response,
     error => {
-        console.log('err' + error) // for debug
-        Message({
-            message: error.message,
-            type: 'error',
-        });
         return Promise.reject(error)
     }
 )

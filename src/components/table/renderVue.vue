@@ -305,26 +305,28 @@ export default {
                 return false
 			}
 		},
-		getFilters(){
-
+        filterFormat(data,label,value){
+            return data.map(obj => {
+                obj.value = obj[value];
+                obj.text = obj[label];
+                obj.disabled = false;
+                return obj
+            });
+        },
+		async getFilters(){
             for(let column of this.filterColumn){
                 let lookup=column.lookup;
-
-                this.$sendJson(lookup.remote,
-                    lookup.data ||{"params":{"pagination":{"pagenum":1,"pagesize":"999"}}},
-                    data=>{
-                        let list = data.data.records || data.data;
-                        let label = lookup.replaceLabel || 'label';
-                        let value = lookup.replaceValue || 'value';
-                        list.map( obj => {
-                            obj.value  = obj[value];
-                            obj.text = obj[label];
-                            obj.disabled = false;
-                            return obj
-                        });
-                        lookup.option=list;
-                    }
-                );
+                let label = lookup.replaceLabel || 'label';
+                let value = lookup.replaceValue || 'value';
+                if (lookup.remote && !(lookup.option && lookup.option.length)) {
+                    this.$sendJson(lookup.remote,
+                        lookup.data ||{"params":{"pagination":{"pagenum":1,"pagesize":"999"}}},
+                        data=>{
+                            let list = data.data.records || data.data;
+                            lookup.option=this.filterFormat(list,label,value);
+                        }
+                    );
+                }
 			}
 		},
 	    textToIcon(text){
