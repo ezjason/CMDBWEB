@@ -95,7 +95,7 @@
                 if(data&&data.length){
                     hash=data.map(val=>{
                         return val.path
-                    }).join('/')
+                    }).filter(val=>val).join('/')
                     hash='/home/'+hash;
                 }
                 if(!this.authority){
@@ -120,6 +120,7 @@
                 path=path.map(val=>{
                     return val.label
                 });
+                path=path.filter(val=>!!val);
                 this.$store.commit('setPathText',path.join('/'))
             },
             back(){
