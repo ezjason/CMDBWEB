@@ -19,12 +19,12 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.17.1",
-    "element-ui": "1.4.3",
     "jquery": "^2.1.1",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
+    "element-ui": "^1.4.12",
     "babel-helper-vue-jsx-merge-props": "^2.0.2",
     "babel-plugin-syntax-jsx": "^6.18.0",
     "babel-plugin-transform-vue-jsx": "^3.3.0",
