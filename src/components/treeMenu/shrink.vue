@@ -132,14 +132,14 @@
                     this.$store.commit('resetModule',{data:'rightBody'});
                 }else if(menu.path){
                     this.clickPath='';
-                    this.$router.push(menu.path);
+                    this.$router.push('/home/'+this.$route.params.id+'/'+menu.path);
                 }
             },
             childClick(menu){
                 if(arguments[0].path==this.key){
                     this.$store.commit('resetModule',{data:'rightBody'});
                 }else if(arguments[0].path){
-                    this.$router.push(menu.path);
+                    this.$router.push('/home/'+this.$route.params.id+'/'+menu.path);
                     this.clickPath=[];
                     for(let i of arguments){
                         this.clickPath.unshift(i)
