@@ -598,14 +598,16 @@ export default {
                         sort:self.sortParam,
                     },
                     condition:{
-                        ...self.appendParam,
                         ...self.filterParam,
-                        ...(self.searchParam||{}),
+                        ...self.searchParam,
                     }
                 }
             };
             if(this.data.onSearch){
                 table_param.params.condition=this.data.onSearch(table_param.params.condition);
+            }
+            if (self.appendParam) {
+                Object.assign(table_param.params.condition,self.appendParam);
             }
             let table_data = await this.$fetch('POST', table_url, table_param);
 			if (!table_data||table_data.msgCode != 200) {
