@@ -587,24 +587,26 @@ export default {
 		async getList() {
 			let self = this;
 			let table_url = self.public.url;
-			let table_param = {
-				params: {
+			let table_param;
+			if(!table_url){return}
+            this.loading=true;
+            table_param={
+                params: {
                     pagination: {
-						pagenum: self.pagination.pagenum,
-						pagesize: self.pagination.pagesize,
-						sort:self.sortParam,
+                        pagenum: self.pagination.pagenum,
+                        pagesize: self.pagination.pagesize,
+                        sort:self.sortParam,
                     },
                     condition:{
-						...self.appendParam,
-						...self.filterParam,
-					}
-				}
-			};
-			if(!table_url){return}
-			if (self.searchParam) {
-				Object.assign(table_param.params.condition,self.searchParam);
-			}
-            this.loading=true;
+                        ...self.appendParam,
+                        ...self.filterParam,
+                        ...(self.searchParam||{}),
+                    }
+                }
+            };
+            if(this.data.onSearch){
+                table_param.params.condition=this.data.onSearch(table_param.params.condition);
+            }
             let table_data = await this.$fetch('POST', table_url, table_param);
 			if (!table_data||table_data.msgCode != 200) {
                 this.loading=false;
@@ -628,11 +630,7 @@ export default {
 			let self = this;
 			self.getSearch = data;
 			if(self.public.url){
-			    let searchData=data;
-			    if(this.data.onSearch){
-                    searchData=this.data.onSearch(data);
-				}
-                self.searchParam = searchData;
+                self.searchParam = data;
                 self.getList();
 			}else{
                 self.table.data=this.data.records.filter(v=>{
