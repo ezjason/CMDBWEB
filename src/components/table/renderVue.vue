@@ -80,7 +80,7 @@
                     :total="pagination.rowCount"
                     @current-change="pagenumChaneg"
                     @size-change="pagesizeChange"
-                    :page-sizes="[10, 20, 30, 40]"
+                    :page-sizes="[10, 20, 30, 40,100,1000]"
                     layout="total, sizes, prev, pager, next, jumper"></el-pagination>
             <el-row style="float: left" v-if="bottomBtn.length">
                 <el-button v-for="btn in bottomBtn"
