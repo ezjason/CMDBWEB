@@ -11,6 +11,7 @@
             </search>
             <div class="tableList">
                 <el-table
+                        :key='tableKey'
                         v-if="showTable"
                         ref="table"
                         :data="table.data"
@@ -116,6 +117,7 @@ export default {
     },
 	data() {
 		return {
+            tableKey:1,
             appendParam: {},
             isShowMinorPage: false,
             getComponent: false,
@@ -615,8 +617,9 @@ export default {
                 return;
 			}
 			if(this.data.onDataLoad){
-                table_data=this.data.onDataLoad(table_data,this.data.grid.column)
-				this.dataNumber++
+                table_data=this.data.onDataLoad(table_data,this.data.grid.column,this);
+				this.dataNumber++;
+				this.tableKey++
 			}
 			self.table.data = [];
 			self.table.data = table_data.data.records||table_data.data.dataList||table_data.data;
