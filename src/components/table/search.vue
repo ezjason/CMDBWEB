@@ -21,7 +21,7 @@
         vertical-align: bottom;
     }
     .el-input,.el-select {
-        width: 200px;
+        width: 120px;
     }
     &:after {
         content: ' ';
