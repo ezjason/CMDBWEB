@@ -46,7 +46,7 @@ const mutations = {
         state.linkBoxs=data;
     },
     toggleShrink(state,data){
-        state.shrink=!state.shrink
+        state.shrink=data||!state.shrink
     },
     setPathText(state,data){
         state.pathText=data
