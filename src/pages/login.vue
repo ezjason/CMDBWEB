@@ -70,6 +70,7 @@
 
 <script>
     import packageConfig from '../../package.json'
+    import api from '../config/api'
 
     module.exports = {
         data:function () {
@@ -112,7 +113,7 @@
                 let param=self.form;
                 let duration=1000;
                 let showClose=true;
-                let data=await this.$fetch('POST','/user/passport/login',{params:{...param,password:self.$encrypt(param.password)}},'');
+                let data=await this.$fetch('POST', api.lgoinActionUrl || '/user/passport/login',{params:{...param,password:self.$encrypt(param.password)}},'');
                 if(data&&data.msgCode=='200'){
                     this.$message({
                         message: '登录成功',
