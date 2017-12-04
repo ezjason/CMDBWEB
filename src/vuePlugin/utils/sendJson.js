@@ -3,7 +3,7 @@ import axios from 'axios'
 
 var service = axios.create({
     // baseURL: '',
-    timeout: 5000,
+    timeout: 0,
     headers: {'Content-Type': 'application/json'}
 });
 service.interceptors.response.use(
