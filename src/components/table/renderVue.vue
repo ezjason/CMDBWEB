@@ -30,6 +30,7 @@
                     <el-table-column v-if="table.prop.index" type="index" label="序号" width="31"></el-table-column>
                     <el-table-column resizable="true"
                                      v-for="column in data.grid.column"
+                                     :key="column.colkey"
                                      v-if="!column.hide"
                                      :label="column.name"
                                      :min-width="topTableWidth(column,data.grid.column)"
@@ -58,6 +59,7 @@
                                      :fixed="isFixedBtn">
                         <template scope="scope">
                             <el-tooltip v-for="btn in lineBtn"
+                                        :key="btn.text"
                                         :content="btn.text"
                                         :enterable="false"
                                         placement="top"
