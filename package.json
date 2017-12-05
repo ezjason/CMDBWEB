@@ -10,7 +10,7 @@
     "dev": "cooking watch -p",
     "dist": "cooking build -p",
     "build": "cooking build -p -c cooking.build.js",
-    "npm": "npm run build && npm version patch && cnpm publish",
+    "npm": "npm run build && git add . && git commit -m build && npm version patch && cnpm publish",
     "docs": "docsify serve docs",
     "deploy": "cooking build --no-color",
     "test": "cooking test karma start --single-run",
