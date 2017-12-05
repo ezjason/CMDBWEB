@@ -65,45 +65,18 @@ menu.push({
                     "btn": [
                         {
                             "type": "pageOpen",
-                            "param": "",
                             "text": "新增",
-                            "btnAuthorityCode":'ATM-AUTOMATIC-OPTIONS-PUBLICOPTIONS-ADD-MENU',
-                            "position": "",
-                            "alert": "",
-                            vue: {template:`<div style="    height: 100%;    line-height: 300px;   text-align: center;    background: #666666;">hello world</div>`},
-                            "disabled": row => {
-                                return true
-                            },
-                            data: {
-                                type: "insert",
-                                enter:'publicScript'
-                            },
-                            authorityCode: [{
-                                api: '/atm/script/info/my/page/list',
-                                code: 'ATM_SCRIPT_INFO_GET_MY_PAGE_LIST'
-                            },{
-                                api: '/atm/script/category/list',
-                                code: 'ATM_SCRIPT_CATEGORY_GET_LIST'
-                            },{
-                                api: '/atm/script/type/list',
-                                code: 'ATM_SCRIPT_TYPE_GET_LIST'
-                            },{
-                                api: '/user/info/findUsers',
-                                code: 'BASE_USER_INFO_FIND_USERS'
-                            },{
-                                api: '/user/info/getAuditorList',
-                                code: 'BASE_USER_INFO_GET_AUDITOR_LIST'
-                            },{
-                                api: '/atm/script/info/add',
-                                code: 'ATM_SCRIPT_INFO_ADD'
-                            },{
-                                api: '/atm/script/info/add',
-                                code: 'ATM_SCRIPT_INFO_ADD'
-                            },{
-                                api: '/atm/script/info/edit',
-                                code: 'ATM_SCRIPT_INFO_UPDATE'
-                            }]
-                        }],
+                            "position": "line",
+                        },{
+                            "type": "pageOpen",
+                            "text": "123",
+                            "position": "line",
+                        },{
+                            "type": "pageOpen",
+                            "text": "3245",
+                            "position": "line",
+                        },
+                    ],
                     "grid": {
                         "showTableTop": true,
                         "pageSize": "10",
