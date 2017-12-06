@@ -67,6 +67,8 @@ menu.push({
                             "type": "pageOpen",
                             "text": "新增",
                             "position": "line",
+                            vue: {template:`<div style="    height: 100%;    line-height: 300px;   text-align: center;    background: #666666;">hello world</div>`},
+
                         },{
                             "type": "pageOpen",
                             "text": "123",
