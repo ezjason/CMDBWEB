@@ -204,15 +204,15 @@ export default {
 		},
 	    lineBtn(){
 	      	let self=this;
-	      	return self.data.btn.filter(btn=>btn.position==='line')
+	      	return self.data.btn?self.data.btn.filter(btn=>btn.position==='line'):[]
 		},
         bottomBtn(){
 	      	let self=this;
-	      	return self.data.btn.filter(btn=>btn.position==='bottom')
+	      	return self.data.btn?self.data.btn.filter(btn=>btn.position==='bottom'):[]
 		},
         btnList(){
             let self=this;
-            return self.data.btn.filter(btn=>!btn.position)
+            return self.data.btn?self.data.btn.filter(btn=>!btn.position):[]
 		},
 		width(){
 	        let width=36;
