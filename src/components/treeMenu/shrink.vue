@@ -7,6 +7,7 @@
             height: 44px;
             font-size: 18px;
             position: relative;
+            display: block;
             /*margin: 10px 0;*/
             transition: all .2s;
             color: #5e7c98;
@@ -89,7 +90,7 @@
 
 <template>
     <div class="shrinkMenu">
-        <div class="top" v-for="item in list" :class="{active:indexOf(item)}" @click="topClick(item)">
+        <a class="top" v-for="item in list" :href="'#/home/'+$route.params.id+'/'+item.path" :class="{active:indexOf(item)}" @click="topClick(item)">
             <i :class="{[item.icon]:true}"></i>&nbsp;
             <i class="el-icon-arrow-right" v-if="item.children&&item.children.length"></i>
             <div class="child" v-if="item.children&&item.children.length">
@@ -105,7 +106,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
     </div>
 </template>
 
