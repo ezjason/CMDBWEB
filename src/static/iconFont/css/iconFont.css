@@ -11,6 +11,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-beizhuicon:before { content: "\e614"; }
+
 .icon-icwendang:before { content: "\e666"; }
 
 .icon-zhuji2:before { content: "\e615"; }
