@@ -1,3 +1,4 @@
 export default {
-  lgoinActionUrl: null
+    lgoinActionUrl: null,
+    loginValidateCode:null,
 }
