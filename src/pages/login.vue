@@ -159,7 +159,10 @@
                     });
                     this.$storage.set('userInfo',data.data.userInfo);
                     if(this.checked){
-                        this.$storage.set('login',params);
+                        this.$storage.set('login',{
+                            account:self.form.account,
+                            password:self.form.password,
+                        });
                     }
                     let loginKey={
                         'snc-token':data.data.certification.token,
@@ -171,6 +174,7 @@
                     this.$store.commit('setLoginKey',{data:null});
                     this.$storage.set('login',null);
                     this.$storage.set('userInfo',null);
+                    this.validInit();
                 }
                 this.loading=false;
             },
@@ -183,10 +187,12 @@
             validInit(){
                 if(this.api.loginValidateCode){
                     this.getValidateCode();
-                    this.rules.code=[
-                        { required: true, message: '验证码不能为空'},
-                        { min: 4, max: 4, message: '验证码长度只能为4个字符'},
-                    ];
+                    if(!this.rules.code){
+                        this.rules.code=[
+                            { required: true, message: '验证码不能为空'},
+                            { min: 4, max: 4, message: '验证码长度只能为4个字符'},
+                        ];
+                    }
                 }
             }
         },
