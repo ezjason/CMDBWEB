@@ -386,7 +386,6 @@ export default {
                                 data:column.link.data
                             },
                             vue:vue,
-                            showBtn:column.link.showBtn,
                         });
 					}
 				    break;
