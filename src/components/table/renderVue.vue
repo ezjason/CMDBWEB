@@ -36,7 +36,7 @@
                                      :min-width="topTableWidth(column,data.grid.column)"
                                      :sortable="column.sort&&'custom'"
                                      :width="column.$width"
-                                     :fixed="column.fixed"
+                                     :fixed="table.data.length > 0&&column.fixed"
                                      :prop="column.colkey"
                                      :column-key="column.colkey"
                                      :filters="getFilterItem(column)"
