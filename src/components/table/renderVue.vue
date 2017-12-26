@@ -6,12 +6,11 @@
 <div id="tableList" v-loading="loading">
     <transition-group name="table" tag="div">
         <div class="main-page" :key="1" v-show="!isShowMinorPage">
-            <search :hide="table.prop.hideSearch" :dataNumber="dataNumber" :clumns="searchColumn" :btns="btnList" @search="onSearch" @btnClick="onFuncBtns">
+            <search :hide="table.prop.hideSearch" :clumns="searchColumn" :btns="btnList" @search="onSearch" @btnClick="onFuncBtns">
                 <span v-if="public.showTitle">{{public.title}}</span>
             </search>
             <div class="tableList">
                 <el-table
-                        :key='tableKey'
                         v-if="showTable"
                         ref="table"
                         :data="table.data"
@@ -119,12 +118,10 @@ export default {
     },
 	data() {
 		return {
-            tableKey:1,
             appendParam: {},
             isShowMinorPage: false,
             getComponent: false,
 			boxTimer:'',
-            dataNumber:0,
             filterParam:{},
             sortParam:{},
             searchParam: '',
@@ -619,8 +616,6 @@ export default {
 			}
 			if(this.data.onDataLoad){
                 table_data=this.data.onDataLoad(table_data,this.data.grid.column,this);
-				this.dataNumber++;
-				this.tableKey++
 			}
 			self.table.data = [];
 			self.table.data = table_data.data.records||table_data.data.dataList||table_data.data;
@@ -672,7 +667,6 @@ export default {
 			});
 			self.appendParam = {};
 			self.isShow = false;
-			self.dataNumber = 0;
 			self.isShowMinorPage = false;
 			self.dialogComponent = false;
 			self.getComponent = false;
