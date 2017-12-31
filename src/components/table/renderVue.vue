@@ -350,6 +350,7 @@
             formatOption(option,...param){
                 let relay=null;
                 if(option instanceof Function){
+                    param.push({sortParam:this.sortParam,appendParam:this.appendParam,filterParam:this.filterParam,searchParam:this.searchParam});
                     relay=option.apply(this,param)
                 }else{
                     relay=option
@@ -362,7 +363,11 @@
                         let label=this.formatOption(column.link.title,scope.row)||scope.row[column.colkey];
                         let selfVue=this.formatOption(column.link.vue,scope.row);
                         if(selfVue){
-                            let data={...scope,selfVue,data:this.formatOption(column.link.data,scope.row)};
+                            let data={
+                                ...scope,
+                                selfVue,
+                                data:this.formatOption(column.link.data,scope.row)
+                            };
                             this.pageOpen(true,{label,click:()=>{
                                 this.getComponent=false;
                                 this.getData=data;
@@ -467,7 +472,7 @@
                     paramFn=param
                 }
                 if(paramFn instanceof Function){
-                    result=this.formatOption(paramFn,row?[row]:this.choiceRecord,{sortParam:this.sortParam,appendParam:this.appendParam,filterParam:this.filterParam,searchParam:this.searchParam});
+                    result=this.formatOption(paramFn,row?[row]:this.choiceRecord);
                 }
                 return JSON.parse(JSON.stringify(result))
             },
