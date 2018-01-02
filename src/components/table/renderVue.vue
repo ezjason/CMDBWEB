@@ -7,7 +7,7 @@
         <transition-group name="table" tag="div">
             <div class="main-page" :key="1" v-show="!isShowMinorPage">
                 <search :hide="table.prop.hideSearch" :clumns="searchColumn" :btns="btnList" @search="onSearch" @btnClick="onFuncBtns">
-                    <span v-if="public.showTitle">{{public.title}}</span>
+                    <span style="display:inline-block;margin-bottom: 20px;" v-if="public.showTitle">{{public.title}}</span>
                 </search>
                 <div class="tableList">
                     <el-table

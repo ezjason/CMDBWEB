@@ -31,7 +31,7 @@ menu.push({
                 authorityCode: 'ATM-AUTOMATIC-OPTIONS-PUBLICOPTIONS-MENU',
                 vue: ModuleRender,
                 data: {
-                    "showTitle": false,
+                    "showTitle": true,
                     "showPage": true,
                     "title": "用户操作列表",
                     "btnAuthorityCode":'ATM-AUTOMATIC-OPTIONS-PUBLICOPTIONS-FIND-MENU',

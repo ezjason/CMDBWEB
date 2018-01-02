@@ -17,11 +17,11 @@
             }
         }
     }
-    .fix{
-        vertical-align: bottom;
-    }
     .el-input,.el-select {
         width: 120px;
+    }
+    .fix{
+        vertical-align: bottom;
     }
     &:after {
         content: ' ';
@@ -30,7 +30,7 @@
     }
     .top {
         display: inline-block;
-        line-height: 60px;
+        width: 100%;
         &:after {
             content: ' ';
             clear: both;
@@ -81,123 +81,107 @@
     }
 }
 </style>
+<style lang="less">
+    .searchItem{
+        .el-form-item__label{
+            text-align: right;
+        }
+    }
+</style>
+
 
 <template>
     <div class="searchForm" >
         <div class="top">
             <slot></slot>
-            <!--<el-form v-if="!hide" class="topSearch" :inline="true" :label-position="labelPosition" size="mini">
-                &lt;!&ndash;<el-form-item>
-                    <el-select class="typeSelect" v-model="checkType" value-key="colkey" size="small" placeholder="请选择" @change="lookupTypeChange">
-                        <el-option v-for="item in typeList" :label="item.name" :value="item" :disabled="!!disabled(item)">
-                            <span class="label">{{ item.name }}</span>
-                            <span class="btn" @click.stop="toggleList(item)">
-                                <i :class="{'el-icon-minus':disabled(item),'el-icon-plus':!disabled(item)}"></i>
-                            </span>
-                        </el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item class="fix" v-for="search in [checkType||{}]">
-                    <div @keyup.enter="onSearch">
+            <el-form v-if="!hide" class="topSearch" :inline="true" label-position="left" label-width="60px" size="mini">
+                <template v-if="ishigh">
+                    <el-form-item class="fix" @keyup.enter.native="onSearch" v-for="search in typeList" :label="search.name">
+                        <search-item v-model="form[search.colkey]"
+                                     :groupKey="search.lookup&&search.lookup.groupKey"
+                                     :remote="search.lookup&&search.lookup.remote"
+                                     :placeholder="search.name"
+                                     :data="search.lookup&&search.lookup.data"
+                                     :props="search.lookup&&search.lookup.props"
+                                     :replaceLabel="search.lookup&&search.lookup.replaceLabel"
+                                     :replaceValue="search.lookup&&search.lookup.replaceValue"
+                                     :type="search.lookup&&search.lookup.type"
+                                     :option="search.lookup&&search.lookup.option">
+                        </search-item>
+                    </el-form-item>
+                </template>
 
-                        <el-select v-if="search.lookup&&search.lookup.type.toLocaleLowerCase()==='select'"
-                                   :placeholder="search.name"
-                                   :clearable="true"
-                                   :filterable="search.lookup.props&&search.lookup.props.filterable"
-                                   v-model="checkValue"
-                                   size="small">
-                            <el-option-group v-if="search.lookup.groupKey"
-                                             v-for="item in search.lookup.option"
-                                             :label="item.label">
-                                <el-option v-for="i in item.children" :value="i.value" :label="i.label"></el-option>
-                            </el-option-group>
-                            <el-option v-if="!search.lookup.groupKey" v-for="i in search.lookup.option" :value="i.value" :label="i.label"></el-option>
+                <template v-else>
+                    <el-form-item>
+                        <el-select class="typeSelect" v-model="checkType" value-key="colkey" size="small" placeholder="请选择">
+                            <el-option v-for="item in typeList" :label="item.name" :value="item">
+                                <span class="label">{{ item.name }}</span>
+                            </el-option>
                         </el-select>
-
-                        <el-date-picker
-                                v-else-if="search.lookup&&search.lookup.type==='DateTime'"
-                                size="small"
-                                v-model="checkValue"
-                                type="datetime"
-                                placeholder="选择日期时间"
-                                :picker-options="pickerOptions">
-                        </el-date-picker>
-                        <el-input :placeholder="search.name" v-else size="small" v-model="checkValue"></el-input>
-                    </div>
+                    </el-form-item>
+                    <el-form-item class="fix" @keyup.enter.native="onSearch">
+                        <search-item v-model="checkValue"
+                                     :groupKey="checkTypeLookup.groupKey"
+                                     :remote="checkTypeLookup.remote"
+                                     :placeholder="checkType&&checkType.name"
+                                     :data="checkTypeLookup.data"
+                                     :props="checkTypeLookup.props"
+                                     :replaceLabel="checkTypeLookup.replaceLabel"
+                                     :replaceValue="checkTypeLookup.replaceValue"
+                                     :type="checkTypeLookup.type"
+                                     :option="checkTypeLookup.option">
+                        </search-item>
+                    </el-form-item>
+                </template>
+                <el-form-item>
+                    <!--此处el-button元素头尾相连不格式化是为了解决换行符会在浏览器渲染成一个空格的问题-->
+                    <el-button type="text" size="small" @click="ishigh=!ishigh">{{ishigh?'高级':'普通'}}</el-button>
+                    <el-button size="small"
+                               type="primary"
+                               icon="search"
+                               @click="onSearch">搜索</el-button><el-button
+                        class="reset"
+                        type="primary"
+                        v-show="list&&list.length"
+                        size="small"
+                        @click="reset">重置</el-button><el-button
+                        size="small"
+                        v-for="(btn,index) in btns"
+                        v-if="index<4"
+                        :type="btn.style||'primary'"
+                        @click="btnClick(btn)">{{btn.text}}</el-button>
                 </el-form-item>
-    &ndash;&gt;
-
-    
-            </el-form>-->
+                <el-form-item class="searchBtn" v-if="btns.length>4" >
+                    <el-dropdown @command="btnClick">
+                        <el-button size="small" type="primary">
+                            更多
+                            <i class="el-icon-caret-bottom el-icon--right"></i>
+                        </el-button>
+                        <el-dropdown-menu slot="dropdown">
+                            <el-dropdown-item v-for="(btn,index) in btns" v-if="index>=4" :command="btn">{{btn.text}}</el-dropdown-item>
+                        </el-dropdown-menu>
+                    </el-dropdown>
+                </el-form-item>
+            </el-form>
         </div>
-        <el-form class="bottom" v-show="list&&list.length" :inline="true" label-position="top" size="mini">
-            <el-form-item v-for="search in list" :label="search.name">
-                <div @keyup.enter="onSearch">
-                    <el-select v-if="search.lookup&&search.lookup.type.toLocaleLowerCase()==='select'"
-                               :placeholder="search.name"
-                               :clearable="true"
-                               :filterable="search.lookup.props&&search.lookup.props.filterable"
-                               v-model="form[search.colkey]"
-                               size="small">
-                        <el-option-group v-if="search.lookup.groupKey"
-                                         v-for="item in search.lookup.option"
-                                         :label="item.label">
-                            <el-option v-for="i in item.children" :value="i.value" :label="i.label"></el-option>
-                        </el-option-group>
-                        <el-option v-if="!search.lookup.groupKey" v-for="i in search.lookup.option" :value="i.value" :label="i.label"></el-option>
-                    </el-select>
-
-                    <el-date-picker v-else-if="search.lookup&&search.lookup.type==='DateTime'" size="small"
-                                    v-model="form[search.colkey]" type="datetime" placeholder="选择日期时间"
-                                    :picker-options="pickerOptions">
-                    </el-date-picker>
-                    <el-input :placeholder="search.name" v-else @keyup.enter="onSearch" size="small"
-                              v-model="form[search.colkey]"></el-input>
-                </div>
-            </el-form-item>
-            <el-form-item class="searchBtn">
-                <!--此处el-button元素头尾相连不格式化是为了解决换行符会在浏览器渲染成一个空格的问题-->
-                <el-button size="small"
-                           type="primary"
-                           icon="search"
-                           @click="onSearch">搜索</el-button><el-button
-                    class="reset"
-                    type="primary"
-                    v-show="list&&list.length"
-                    size="small"
-                    @click="reset">重置</el-button><el-button
-                    size="small"
-                    v-for="(btn,index) in btns"
-                    v-if="index<4"
-                    :type="btn.style||'primary'"
-                    @click="btnClick(btn)">{{btn.text}}</el-button>
-            </el-form-item>
-
-            <el-form-item class="searchBtn" v-if="btns.length>4" >
-                <el-dropdown @command="btnClick">
-                    <el-button size="small" type="primary">
-                        更多
-                        <i class="el-icon-caret-bottom el-icon--right"></i>
-                    </el-button>
-                    <el-dropdown-menu slot="dropdown">
-                        <el-dropdown-item v-for="(btn,index) in btns" v-if="index>=4" :command="btn">{{btn.text}}</el-dropdown-item>
-                    </el-dropdown-menu>
-                </el-dropdown>
-            </el-form-item>
-        </el-form>
     </div>
 </template>
 
 <script>
 
 import _ from 'underscore'
+import searchItem from './searchItem.vue'
 
 export default {
     props: ['clumns','hide', 'btns','dataNumber'],
+    components:{
+        searchItem,
+    },
     data() {
         return {
             checkType: '',
             checkValue: '',
+            ishigh: false,
             list: [],
             form: {},
             pickerOptions: {
@@ -229,9 +213,12 @@ export default {
             if(this.dataNumber<=1){
                 this.init();
             }
-        }
+        },
     },
     computed: {
+        checkTypeLookup(){
+            return this.checkType&&this.checkType.lookup||{}
+        },
         typeList() {
             return this.clumns.filter(val => {
                 return !val.noSearch
@@ -250,6 +237,11 @@ export default {
         },
     },
     methods: {
+        searchChange(){
+            return this.typeList.map(val=>{
+                this.toggleList(val)
+            })
+        },
         checkKey(key) {
             if (!(key in this.form)) {
                 this.$set(this.form, key, '');
@@ -288,7 +280,7 @@ export default {
         },
         onSearch() {
             let data = JSON.parse(JSON.stringify(this.form));
-//            data[this.checkType.colkey] = this.checkValue;
+            data[this.checkType.colkey] = this.checkValue;
             for (let i in data) {
                 if (/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})T(\d{1,2}):(\d{1,2}):(\d{1,2})\.(\d{1,3})Z$/.test(data[i])) {
                     data[i] = +new Date()
@@ -351,9 +343,6 @@ export default {
             this.checkValue = '';
             this.list = [];
             this.form = {};
-            this.typeList.map(val=>{
-                this.toggleList(val)
-            })
         }
     },
     created() {
