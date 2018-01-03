@@ -13,11 +13,11 @@
                    v-model="value"
                    size="small">
             <el-option-group v-if="groupKey"
-                             v-for="item in option"
+                             v-for="item in cacheOption"
                              :label="item.label">
                 <el-option v-for="i in item.children" :value="i.value" :label="i.label"></el-option>
             </el-option-group>
-            <el-option v-if="!groupKey" v-for="i in option" :value="i.value" :label="i.label"></el-option>
+            <el-option v-if="!groupKey" v-for="i in cacheOption" :value="i.value" :label="i.label"></el-option>
         </el-select>
 
         <el-date-picker v-else-if="toType==='datatime'" size="small"
@@ -31,6 +31,9 @@
 </template>
 
 <script>
+
+    let cache={};
+
     export default {
         model: {
             prop: 'value',
@@ -50,6 +53,7 @@
         },
         data(){
             return {
+                cache,
                 pickerOptions: {
                     shortcuts: [{
                         text: '今天',
@@ -77,16 +81,22 @@
         watch:{
             value(){
                 this.$emit('change',this.value);
-            },
+            }
         },
         computed:{
             toType(){
                 return this.type&&this.type.toLocaleLowerCase()
             },
+            cacheKey(){
+                return (this.remote+JSON.stringify(this.data)).toString(36)
+            },
+            cacheOption(){
+                return this.cache[this.cacheKey]||this.option
+            },
         },
         methods:{
             async lookupTypeChange(val) {
-                if (this.remote && !(this.option && this.option.length)) {
+                if (this.remote && !(this.cacheOption&&this.cacheOption.length)) {
                     let data = await this.$fetch('post', this.remote, this.data ||{"params":{"pagination":{"pagenum":1,"pagesize":"999"}}});
                     let list = data.data.records || data.data;
                     let label = this.replaceLabel || 'label';
@@ -113,9 +123,9 @@
                             optionsObj[obj[groupKey]].children.push(obj);
                         }
                         //再转换
-                        this.option=Object.values(optionsObj);
+                        this.$set(this.cache,this.cacheKey,Object.values(optionsObj));
                     }else{
-                        this.option=list;
+                        this.$set(this.cache,this.cacheKey,list);
                     }
                 }
             },
