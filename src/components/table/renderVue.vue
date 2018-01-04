@@ -155,6 +155,7 @@
                     '下移':'icon-movedown',
                     '分发':'icon-distribute',
                     '下载':'icon-xiazai',
+                    '一致性比对':'icon-compare'
                 },
                 dialogComponent: false,
                 dialogModel: false,

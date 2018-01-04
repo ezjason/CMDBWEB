@@ -11,7 +11,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-beizhuicon:before { content: "\e614"; }
+
+.icon-compare:before { content: "\e6d2"; }
 
 .icon-icwendang:before { content: "\e666"; }
 
