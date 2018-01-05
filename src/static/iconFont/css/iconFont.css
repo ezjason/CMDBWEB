@@ -11,6 +11,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-shoudonghuoqu:before { content: "\e67d"; }
+
+.icon-beizhuicon:before { content: "\e614"; }
 
 .icon-compare:before { content: "\e6d2"; }
 
