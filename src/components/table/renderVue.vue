@@ -254,6 +254,7 @@
         },
         watch: {
             data() {
+                console.log('watch')
                 this.rest();
             }
         },
@@ -333,6 +334,7 @@
             },
             textToIcon(text){
                 let icon=this.btnIcon;
+                console.log(text);
                 let result=text;
                 if(icon[text]){
                     result=`<i class="iconfont ${icon[text]}"></i>`
@@ -784,7 +786,6 @@
                 self.choiceRecord = val;
             },
             formatterCol(scope,currColumn) {
-                let self = this;
                 let row = scope.row;
                 let column = scope.column;
                 let columnVal = row[column.property];
@@ -801,6 +802,9 @@
         created() {
             let self = this;
             self.rest();
+        },
+        updated(){
+            console.log('update')
         },
     }
 </script>
