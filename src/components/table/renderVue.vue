@@ -259,7 +259,6 @@
         },
         watch: {
             data() {
-                console.log('watch')
                 this.rest();
             }
         },
@@ -666,9 +665,8 @@
                 if(this.data.onDataLoad){
                     table_data=this.data.onDataLoad(table_data,this.data.grid.column,this);
                 }
-                self.table.data = [];
-                self.table.data = table_data.data.records||table_data.data.dataList||table_data.data;
                 self.setPagination(table_data.data);
+                self.table.data = table_data.data.records||table_data.data.dataList||table_data.data;
 
                 this.$nextTick(()=>{
                     this.loading=false;
@@ -710,10 +708,6 @@
             rest() {
 
                 let self = this;
-                this.showTable=false;
-                self.$nextTick(function(){
-                    self.showTable=true;
-                });
                 self.appendParam = {};
                 self.isShow = false;
                 self.isShowMinorPage = false;
@@ -754,6 +748,9 @@
                     totalPage: 1,
                     rowCount: 0
                 };
+                self.$nextTick(function(){
+                    self.showTable=true;
+                });
 
                 // 权限开关
                 self.authorization();
