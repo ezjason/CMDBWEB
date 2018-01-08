@@ -92,7 +92,23 @@ menu.push({
                             "hide": false,
                             "object": "scriptInfo",
                             "width": "150px",
-                            "filter": "custom",
+                            "filter": "async",
+                            filterAsync:{
+                                remote: '/snc-amp/api/sysPara/page/getListByParaOrCode',
+                                data:{
+                                    "params":{
+                                        "para":"priority",
+                                    }
+                                },
+                                format(val,row,response){
+                                    console.log(val);
+                                    for(let i of response){
+                                        if(i.value==row.riskScript){
+                                            return i.valueChname
+                                        }
+                                    }
+                                },
+                            },
                             "filterCustom": function (val,row) {
                                 // console.log(val,row,this)
                             },
@@ -105,8 +121,15 @@ menu.push({
                                 "hide": false,
                                 "object": "scriptInfo",
                                 "width": "270px",
-                                "filter": "",
-                                "filterCustom": "",
+                                "filter": "async",
+                                filterAsync:{
+                                    remote: '/atm/script/info/page/list',
+                                    data:{},
+                                    option:[],
+                                    format(response,val,row){
+                                        return 1
+                                    },
+                                },
                                 "noSearch": true,
                                 "nosort": [],
                             },

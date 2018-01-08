@@ -109,8 +109,8 @@
 <script type="es6">
     import filter from '../../config/filter';
     import search from './search.vue';
-
     import _ from 'underscore'
+
     export default {
         props: ['data', 'param'],
         components:{
@@ -251,6 +251,11 @@
                     }
                 })
             },
+            asycnColumn(){
+                return this.data.grid.column.filter(column=>{
+                    return (column.filter==='async')&&(column.hide===false)
+                })
+            },
         },
         watch: {
             data() {
@@ -316,7 +321,41 @@
                     return obj
                 });
             },
-            async getFilters(){
+            cacheKey(...arr){
+                let str='';
+                if(typeof arr!=='object'){
+                    arr=[arr];
+                }
+                for(let i of arr){
+                    str+=JSON.stringify(i||'')
+                }
+                return str.toString(36)
+            },
+            asyncFilter(){
+                let arr=[];
+                for(let column of this.asycnColumn){
+                    let asyncObj=column.filterAsync;
+                    if (asyncObj.remote && !(asyncObj.option && asyncObj.option.length)) {
+                        arr.push(
+                            new Promise(resolve=>{
+                                this.$sendJson(asyncObj.remote,
+                                    asyncObj.data ||{"params":{"pagination":{"pagenum":1,"pagesize":"999"}}},
+                                    data=>{
+                                        asyncObj.option = data.data.records || data.data;
+                                        resolve(true)
+                                    }
+                                )
+                            })
+                        )
+                        /*arr.push(this.$fetch('POST',
+                            asyncObj.remote,
+                            asyncObj.data || {"params": {"pagination": {"pagenum": 1, "pagesize": "999"}}},
+                        ));*/
+                    }
+                }
+                return Promise.all(arr);
+            },
+            getFilters(){
                 for(let column of this.filterColumn){
                     let lookup=column.lookup;
                     let label = lookup.replaceLabel || 'label';
@@ -334,7 +373,6 @@
             },
             textToIcon(text){
                 let icon=this.btnIcon;
-                console.log(text);
                 let result=text;
                 if(icon[text]){
                     result=`<i class="iconfont ${icon[text]}"></i>`
@@ -745,6 +783,7 @@
                     }
                 }
                 self.appendParam=appendParam;
+                await this.asyncFilter()//获取异步过滤配置数据
                 self.getList();
             },
             authValid(data){
@@ -804,7 +843,6 @@
             self.rest();
         },
         updated(){
-            console.log('update')
         },
     }
 </script>

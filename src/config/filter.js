@@ -3,7 +3,16 @@ import timeDiff from '../vuePlugin/utils/timeDiff'
 import date from '../vuePlugin/utils/toDate'
 
 export default {
-    custom: function(columnVal, lineData,column){
+    async(columnVal, lineData,column){
+        let obj=column.filterAsync;
+        try {
+            return obj&&obj.format(columnVal, lineData,obj.option);
+        } catch(e) {
+            console.log(e);
+            return columnVal
+        }
+    },
+    custom(columnVal, lineData,column){
         try {
             if(column.filterCustom){
                 switch (typeof column.filterCustom){
