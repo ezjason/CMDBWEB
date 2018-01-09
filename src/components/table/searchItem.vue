@@ -128,7 +128,6 @@
                         this.$set(this.cache,this.cacheKey,list);
                     }
                 }
-                this.value = '';
             },
         },
         created(){

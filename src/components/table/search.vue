@@ -113,7 +113,7 @@
                     </template>
                     <template v-else>
                         <el-form-item>
-                            <el-select class="typeSelect" v-model="checkType" value-key="colkey" size="small" placeholder="请选择">
+                            <el-select class="typeSelect" v-model="checkType" @change="checkValue=''" value-key="colkey" size="small" placeholder="请选择">
                                 <el-option v-for="item in typeList" :label="item.name" :value="item">
                                     <span class="label">{{ item.name }}</span>
                                 </el-option>
