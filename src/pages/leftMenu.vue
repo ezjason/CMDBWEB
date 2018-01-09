@@ -112,16 +112,19 @@
 
 <template>
     <div>
-        <el-menu class="treeMenu" :class="{shrink:shrink}" :default-openeds="openeds" :default-active="key" @select="onSelect" :unique-opened="true">
-            <component :is="menuComponent" :list="menuList" ></component>
-            <div class="menuBottom">
-                <div class="toggleMenu">
-                    <i :class="{['el-icon-arrow-left']:!shrink,['el-icon-arrow-right']:shrink}"
-                       @click="toggleMenu"></i>
+        <div v-show="!isOptionPage">
+            <el-menu class="treeMenu" :class="{shrink:shrink}" :default-openeds="openeds" :default-active="key" @select="onSelect" :unique-opened="true">
+                <component :is="menuComponent" :list="menuList" ></component>
+                <div class="menuBottom">
+                    <div class="toggleMenu">
+                        <i :class="{['el-icon-arrow-left']:!shrink,['el-icon-arrow-right']:shrink}"
+                           @click="toggleMenu"></i>
+                    </div>
+                    <component v-if="bottomMenu&&bottomMenu.length" :is="menuComponent" :list="bottomMenu" ></component>
                 </div>
-                <component v-if="bottomMenu&&bottomMenu.length" :is="menuComponent" :list="bottomMenu" ></component>
-            </div>
-        </el-menu>
+            </el-menu>
+        </div>
+
         <transition name="router-fade" mode="out-in">
             <router-view name="Breadcrumb"></router-view>
         </transition>
@@ -149,6 +152,9 @@
             TreeRender
         },
         computed: {
+            isOptionPage(){
+                return this.key === 'index'
+            },
             openeds(){
                 return this.findOpens(this.menu,this.key)
             },
@@ -180,10 +186,14 @@
                 );
                 let menuList = menuchild && menuchild[0] && menuchild[0].children;
                 if(menuList && menuList.length){
-                    if(!this.key){
+                    if(!this.key||this.key==='index'){
                         let realPath=this.findPath(menuList);
-                        realPath&&this.$router.replace('/home/' + resKey + '/'+realPath);
+                        if(realPath){
+                            this.$router.replace('/home/' + resKey + '/'+realPath)
+                        }
                     }
+                }else{
+                    this.$router.replace(`/home/${resKey}/index`)
                 }
                 return menuList||[]
             },

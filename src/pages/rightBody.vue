@@ -81,8 +81,10 @@
                 return this.$store.state.authorityKey
             },
             getType(){
-                let menuObj = this.$findAll(menu,{path:this.resKey});
-                let comp=false;
+                let menuObj,comp=false;
+                let path=this.isOptionPage?this.id:this.resKey;
+
+                menuObj = this.$findAll(menu,{path});
                 this.moduleData={};
                 if(menuObj&&menuObj.length){
                     menuObj=menuObj[0];
@@ -102,6 +104,7 @@
                         comp=menuObj.vue;
                     }
                 }
+
                 return comp;
             },
             getData(){
