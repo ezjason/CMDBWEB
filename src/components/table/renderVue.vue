@@ -254,7 +254,7 @@
             },
             asycnColumn(){
                 return this.data.grid.column.filter(column=>{
-                    return (column.filter==='async')&&(column.hide===false)
+                    return (column.filter==='async')&&!column.hide
                 })
             },
         },

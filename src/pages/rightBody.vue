@@ -27,6 +27,7 @@
     }
 
     .optionPage {
+        background: #eee;
         position: absolute;
         left: 0;
         right: 0;
