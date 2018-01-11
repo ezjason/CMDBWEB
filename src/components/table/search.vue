@@ -16,6 +16,15 @@
                 margin-left: 5px;
             }
         }
+        .searchLabel{
+            text-align: right;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        .label {
+            float: left;
+        }
     }
     .el-input,.el-select {
         width: 120px;
@@ -52,41 +61,6 @@
         display: inline-block;
     }
 }
-
-.label {
-    float: left;
-}
-
-.btn {
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    line-height: 32px !important;
-    color: #000;
-    font-size: 12px;
-    background: #fff;
-    /*cursor:initial;*/
-    cursor: pointer;
-    &:hover i {
-        color: #1c8de0;
-    }
-    i {
-        margin: 0 10px;
-
-        &.disabled {
-            color: #eee;
-            cursor: initial;
-        }
-    }
-}
-</style>
-<style lang="less">
-    .searchItem{
-        .el-form-item__label{
-            text-align: right;
-        }
-    }
 </style>
 
 
@@ -97,7 +71,8 @@
             <el-form class="topSearch" :inline="true" label-position="left" label-width="60px" size="mini">
                 <template v-if="!hide&&typeList.length">
                     <template v-if="ishigh">
-                        <el-form-item class="fix" @keyup.enter.native="onSearch" v-for="search in typeList" :label="search.name">
+                        <el-form-item class="fix" @keyup.enter.native="onSearch" v-for="search in typeList">
+                            <div slot="label" class="searchLabel" :title="search.name">{{search.name}}</div>
                             <search-item v-model="form[search.colkey]"
                                          :groupKey="search.lookup&&search.lookup.groupKey"
                                          :remote="search.lookup&&search.lookup.remote"
