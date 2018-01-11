@@ -223,9 +223,11 @@ export default {
             return this.checkType&&this.checkType.lookup||{}
         },
         typeList() {
-            return this.clumns.filter(val => {
+            let typeList=this.clumns.filter(val => {
                 return !val.noSearch
-            })
+            });
+            this.checkType = typeList[0];
+            return typeList
         },
         searchList() {
             return [this.checkType].concat(this.list)
@@ -265,7 +267,6 @@ export default {
             this.checkValue='';//清空搜索框
         },
         init() {
-            this.checkType = this.typeList[0];
             this.checkValue = '';
             this.list = [];
             this.form = {};
