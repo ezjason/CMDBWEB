@@ -188,9 +188,7 @@ export default {
     },
     watch: {
         clumns() {
-            if(this.dataNumber<=1){
-                this.init();
-            }
+            this.init();
         },
     },
     computed: {
