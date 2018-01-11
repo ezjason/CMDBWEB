@@ -179,6 +179,9 @@
             menu(){
                 this.$store.commit('setAppendPath',{data:[]});
                 let resKey = this.resKey;
+                if(!this.menuData.length){
+                    return []
+                }
                 let menuchild=this.menuData.filter(
                     function (v) {
                         return v.path == resKey
