@@ -281,7 +281,7 @@
                 let val=Object.values(filters)[0];
                 val=multiple?val:val[0];
                 this.filterParam={...this.filterParam,[colkey]:val};
-                this.getList();
+                this.update();
             },
             sortChange({ column, prop, order }){
                 let sort={name:'',type:''};
@@ -295,7 +295,7 @@
                         break;
                 }
                 this.sortParam=sort;
-                this.getList();
+                this.update();
             },
             getFilterItem(column){
                 if(this.filterColumn.indexOf(column)>=0){
@@ -810,12 +810,12 @@
             pagenumChaneg(pagenum) {
                 let self = this;
                 self.pagination.pagenum = pagenum;
-                self.getList();
+                self.update();
             },
             pagesizeChange(pagesize) {
                 let self = this;
                 self.pagination.pagesize = pagesize;
-                self.getList();
+                self.update();
             },
             //勾选事件
             handleSelectionChange(val) {
