@@ -156,7 +156,11 @@
                     '分发':'icon-distribute',
                     '下载':'icon-xiazai',
                     '一致性比对':'icon-compare',
-                    '抓取':'icon-shoudonghuoqu'
+                    '抓取':'icon-shoudonghuoqu',
+                    '响应':'icon-daiqueren',
+                    '手动恢复':'icon-icon-',
+                    '挂起':'icon-biaoqian',
+                    '解除挂起':'icon-jiechubangding',
                 },
                 dialogComponent: false,
                 dialogModel: false,
