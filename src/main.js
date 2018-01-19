@@ -64,10 +64,10 @@ menu.push({
                     },],
                     "btn": [
                         {
-                            "type": "pageOpen",
+                            "type": "windowOpen",
                             "text": "新增",
                             "position": "line",
-                            vue: {template:`<div style="    height: 100%;    line-height: 300px;   text-align: center;    background: #666666;">hello world</div>`},
+                            vue: {template:`<div style="    height: 100%;    line-height: 300px;   text-align: center;    background: #666666;">hello world</div>`,destroyed(){console.log('destroyed')}},
 
                         },{
                             "type": "pageOpen",
@@ -101,7 +101,6 @@ menu.push({
                                     }
                                 },
                                 format(val,row,response){
-                                    console.log(val);
                                     for(let i of response){
                                         if(i.value==row.riskScript){
                                             return i.valueChname

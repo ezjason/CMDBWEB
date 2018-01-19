@@ -99,6 +99,7 @@
         </transition-group>
 
         <el-dialog
+                v-if="dialogModel"
                 :title="dialogData.title"
                 v-model="dialogModel">
             <component ref="windowOpen" @close="close('dialogModel')"  @update="update('dialogModel')" :is="dialogComponent" :data="dialogData" :param="dialogData"></component>
