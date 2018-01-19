@@ -162,7 +162,7 @@
                     '手动恢复':'icon-icon-',
                     '挂起':'icon-biaoqian',
                     '解除挂起':'icon-jiechubangding',
-                    '应用':'icon-yingyong',
+                    '批量修改':'icon-piliangbianji',
                 },
                 dialogComponent: false,
                 dialogModel: false,
