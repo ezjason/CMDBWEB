@@ -110,7 +110,7 @@
                     </template>
                     <el-form-item>
                         <!--此处el-button元素头尾相连不格式化是为了解决换行符会在浏览器渲染成一个空格的问题-->
-                        <el-button type="text" size="small" @click="ishigh=!ishigh">{{!ishigh?'高级':'普通'}}</el-button>
+                        <el-button type="text" size="small" @click="ishigh=!ishigh" v-if="typeList.length>1">{{!ishigh?'高级':'普通'}}</el-button>
                         <el-button size="small"
                                    type="primary"
                                    icon="search"
