@@ -10,6 +10,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.icon-fanhui:before { content: "\e67a"; }
+
+.icon-chongzuo:before { content: "\e623"; }
 
 .icon-shoudonghuoqu:before { content: "\e67d"; }
 

@@ -51,7 +51,7 @@
         </el-breadcrumb>
         <div class="rightBtn" v-if="appendPath.length">
             <el-button size="small" @click="back">
-                <i class="iconfont icon-fanhui1"></i>
+                <i class="iconfont icon-fanhui"></i>
             </el-button>
         </div>
     </div>
