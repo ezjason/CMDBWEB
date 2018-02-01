@@ -22,6 +22,7 @@
                             highlight-current-row
                             :show-header="table.prop.showTableTop"
                             @row-click="rowClick"
+                            @row-contextmenu="rowRightClick"
                             @filter-change="filterChange"
                             @sort-change="sortChange"
                             @selection-change="handleSelectionChange">
@@ -449,6 +450,9 @@
                     width=column.name.length*13+36
                 }
                 return width
+            },
+            rowRightClick(row, event){
+                this.$emit('row-contextmenu',row, event)
             },
             rowClick(row,e){
                 if(['TD','DIV'].indexOf(e.target.nodeName)>-1){
