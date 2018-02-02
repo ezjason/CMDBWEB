@@ -1,7 +1,7 @@
 <style lang="less" scoped>
     .rightBody {
         position: absolute;
-        left: 220px;
+        left: 175px;
         right: 0;
         overflow: auto;
         top: 100px;
@@ -10,7 +10,7 @@
         border: 5px solid #ececec;
         /*transition: left .2s;*/
         &.shrink{
-            left:60px;
+            left:56px;
         }
         >div{
             transition: all 0.5s;

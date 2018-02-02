@@ -2,7 +2,7 @@
     #Breadcrumb {
         position: absolute;
         top: 60px;
-        left: 220px;
+        left: 175px;
         right: 0;
         overflow: hidden;
         background-color: #fff;
@@ -12,7 +12,7 @@
         padding: 12px;
         transition: all .2s;
         &.shrink{
-            left:60px;
+            left:56px;
         }
         .el-breadcrumb{
             display: inline-block;
