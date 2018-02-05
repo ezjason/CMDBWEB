@@ -29,9 +29,10 @@
             }
         }
         .rightBtn{
-            position: absolute;
-            right: 10px;
-            top: 4px;
+            /*position: relative;*/
+            display: inline-block;
+            /*left: 10px;*/
+            /*top: -2px;*/
         }
     }
 </style>
@@ -43,17 +44,18 @@
 
 <template>
     <div id="Breadcrumb" :class="{shrink:shrink}" v-if="hash.key!=='index'">
+        <div class="rightBtn" >
+            <el-button size="small" @click="back">
+                <i class="iconfont icon-fanhui"></i>
+            </el-button>
+        </div>
         <i class="ace-icon fa fa-home home-icon"></i>
         <el-breadcrumb separator="/">
             <transition-group name="nav" tag="div">
                 <el-breadcrumb-item v-for="(item, index) in showFind" :key="item.label"><span @click="pathClick(item)">{{item.label||item}}</span></el-breadcrumb-item>
             </transition-group>
         </el-breadcrumb>
-        <div class="rightBtn" v-if="appendPath.length">
-            <el-button size="small" @click="back">
-                <i class="iconfont icon-fanhui"></i>
-            </el-button>
-        </div>
+
     </div>
 </template>
 
