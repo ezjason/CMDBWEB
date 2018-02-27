@@ -57,7 +57,7 @@
                 <el-breadcrumb-item v-for="(item, index) in showFind" :key="item.label"><span @click="pathClick(item)">{{item.label||item}}</span></el-breadcrumb-item>
             </transition-group>
         </el-breadcrumb>
-        <div class="rightBtn" >
+        <div class="rightBtn" v-if="appendPath.length">
             <el-button size="small" @click="back">
                 <i class="iconfont icon-fanhui1"></i>
                 返回
