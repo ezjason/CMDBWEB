@@ -1,7 +1,7 @@
 <style lang="less" scoped>
     .treeMenu{
         position: absolute;
-        width: 220px;
+        width: 175px;
         top: 60px;
         bottom: 0;
         box-sizing: border-box;
@@ -16,7 +16,7 @@
             background: #f1f5f6;
         }
         &.shrink{
-            width: 60px;
+            width: 56px;
             overflow: visible;
             .toggleMenu:before{
                 display: none;
@@ -139,8 +139,6 @@
     import TreeRender from '../components/treeMenu/render.vue';
     import Shrink from '../components/treeMenu/shrink.vue';
     import menu from '../data/menu'
-
-
     export default {
         data(){
             return {

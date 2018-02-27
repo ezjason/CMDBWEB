@@ -10,6 +10,21 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.icon-baobiaoguanli:before { content: "\e640"; }
+
+.icon-ziyuanguanli:before { content: "\e641"; }
+
+.icon-jiankonggaojing:before { content: "\e642"; }
+
+.icon-tuoputu:before { content: "\e643"; }
+
+.icon-xitongguanli1:before { content: "\e644"; }
+
+.icon-yunweicaozuo1:before { content: "\e645"; }
+
+.icon-menu2:before { content: "\e609"; }
+
 .icon-fanhui:before { content: "\e67a"; }
 
 .icon-chongzuo:before { content: "\e623"; }
@@ -181,3 +196,5 @@
 .icon-lianheyingyong:before { content: "\e676"; }
 
 .icon-piliangbianji:before { content: "\e63a"; }
+
+.icon-jiantou:before { content: "\e62c"; }

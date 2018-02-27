@@ -2,7 +2,7 @@
     #Breadcrumb {
         position: absolute;
         top: 60px;
-        left: 220px;
+        left: 175px;
         right: 0;
         overflow: hidden;
         background-color: #fff;
@@ -12,7 +12,7 @@
         padding: 12px;
         transition: all .2s;
         &.shrink{
-            left:60px;
+            left:56px;
         }
         .el-breadcrumb{
             display: inline-block;
@@ -29,10 +29,17 @@
             }
         }
         .rightBtn{
-            /*position: relative;*/
-            display: inline-block;
-            /*left: 10px;*/
-            /*top: -2px;*/
+            position: absolute;
+            right: 10px;
+            top: 4px;
+            .el-button{
+                background: #1fa0ff;
+                color: #fff;
+                border: none;
+                &:hover{
+                    background: #1f88ff;
+                }
+            }
         }
     }
 </style>
@@ -44,18 +51,18 @@
 
 <template>
     <div id="Breadcrumb" :class="{shrink:shrink}" v-if="hash.key!=='index'">
-        <div class="rightBtn" >
-            <el-button size="small" @click="back">
-                <i class="iconfont icon-fanhui"></i>
-            </el-button>
-        </div>
         <i class="ace-icon fa fa-home home-icon"></i>
         <el-breadcrumb separator="/">
             <transition-group name="nav" tag="div">
                 <el-breadcrumb-item v-for="(item, index) in showFind" :key="item.label"><span @click="pathClick(item)">{{item.label||item}}</span></el-breadcrumb-item>
             </transition-group>
         </el-breadcrumb>
-
+        <div class="rightBtn" >
+            <el-button size="small" @click="back">
+                <i class="iconfont icon-fanhui1"></i>
+                返回
+            </el-button>
+        </div>
     </div>
 </template>
 
