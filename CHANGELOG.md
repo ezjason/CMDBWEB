@@ -1,3 +1,9 @@
+# 0.2.1
+- 优化返回键样式 owen_dd 2018/2/5 15:05 
+- 新增首页下拉功能 owen_dd 2018/2/27 16:40
+- 增加下拉导航菜单icon配置`navMenuIcon:Boolean` owen_dd 2018/2/27 16:40
+- 新增下拉导航菜单是否可见的配置`isShowInNavMenu:Boolean` owen_dd 2018/2/27 16:40 
+
 # 0.1.65
 - 调整左侧菜单宽度 tangzeye 2018/2/2 11:51
  
