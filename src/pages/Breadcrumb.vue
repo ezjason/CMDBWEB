@@ -32,6 +32,14 @@
             position: absolute;
             right: 10px;
             top: 4px;
+            .el-button{
+                background: #1fa0ff;
+                color: #fff;
+                border: none;
+                &:hover{
+                    background: #1f88ff;
+                }
+            }
         }
     }
 </style>
@@ -52,6 +60,7 @@
         <div class="rightBtn" v-if="appendPath.length">
             <el-button size="small" @click="back">
                 <i class="iconfont icon-fanhui1"></i>
+                返回
             </el-button>
         </div>
     </div>

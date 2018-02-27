@@ -18,6 +18,10 @@ menu.push({
     "name": "运维操作",
     "paramData": "",
     "path": "autoOperation",
+    //下拉导航菜单icon
+    navMenuIcon:'iconfont icon-yunweicaozuo1',
+    //下拉导航菜单是否可见
+    isShowInNavMenu:true,
     authorityCode: 'ATM-AUTOMATIC-MENU',
     children: [{
         name: '操作',
@@ -246,6 +250,10 @@ menu.push({
 menu.push({
     "name": "首页",
     "path": "123123",
+    //下拉导航菜单icon
+    navMenuIcon:'iconfont icon-yunweicaozuo1',
+    ///下拉导航菜单是否可见
+    isShowInNavMenu:true,
     vue: TabsRender,
     data: [
         {

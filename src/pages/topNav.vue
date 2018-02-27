@@ -52,6 +52,84 @@
         clear: both;
         display: block;
     }
+    .menu{
+        position: relative;
+        display: inline-block;
+        height: 60px;
+        float: left;
+        color: #000000;
+        line-height: 60px;
+        padding:0 20px;
+        text-align: center;
+        &:hover{
+            background:#37a8e0 !important;
+        }
+        .iconfont{
+            font-size: 18px;
+        }
+        .icon-menu2{
+            color: #ffffff;
+            cursor: pointer;
+        }
+        .menuList{
+            position: absolute;
+            left: 0;
+            top: 60px;
+            box-shadow:0 3px 8px 0px #dadada;
+            background: #fff;
+            z-index:10000;
+            display: flex;
+            .item{
+                box-sizing: content-box;
+                padding:30px 0px 30px 0px;
+            }
+            .item:first-child{
+                padding:30px 0px 30px 45px;
+            }
+            .item:last-child{
+                padding:30px 15px 30px 45px;
+            }
+            li{
+                float: none!important;
+                text-align: left;
+                color: #808080;
+                font-size: 14px;
+                span{
+                    &:hover{
+                        cursor: pointer;
+                        color: #36a9df;
+                    }
+                }
+            }
+            .item{
+                padding-left: 45px;
+                width:100px;
+                text-align: left;
+                li{
+                    line-height:35px;
+                    height: 35px;
+                }
+                h3{
+                    position: relative;
+                    color: #36a9df;
+                    font-size:15px;
+                    font-weight: 600;
+                    padding:0 0 10px 0;
+                    margin: 0;
+                    border-bottom: 1px solid #e6e6e6;
+                    span{
+                        position: absolute;
+                        left:-34px;
+                        top:-5px;
+                        .iconfont{
+                            font-size: 26px;
+                            font-weight: 500;
+                        }
+                    }
+                }
+            }
+        }
+    }
     .logout{
         float: right;
         div{
@@ -123,6 +201,25 @@
                 <i class="iconfont icon-logout"></i>
             </div>
         </div>
+        <div class="menu" @mouseenter="showMenuFunc" @mouseleave="showMenuFunc">
+            <i class="iconfont icon-menu2">
+            </i>
+            <div class="menuList" v-show="showMenu">
+                <div class="item" v-for="item in menus" v-if="item.isShowInNavMenu" >
+                    <h3>
+                        {{item.name}}
+                        <span>
+                            <i :class="item.navMenuIcon"></i>
+                        </span>
+                    </h3>
+                    <ul>
+                        <li v-if="item.children&&authority(val)" v-for="val in item.children">
+                            <span @click="redirect(item,val)">{{val.name}}</span>
+                        </li>
+                       </ul>
+                </div>
+            </div>
+        </div>
         <template v-for="menu in menus">
             <el-submenu v-if="menu.path==='user'" :index="'/home/'+menu.path" class="userInfo">
                 <template slot="title"><i class="iconfont icon-user2"></i>&nbsp;{{account}}</template>
@@ -139,12 +236,12 @@
 
 <script>
     import menu from '../data/menu'
-
     module.exports = {
         data(){
             return{
                 account:'',
                 accountDialog:false,
+                showMenu:false,
             }
         },
         components:{
@@ -190,6 +287,27 @@
             init(){
                 let loginKey=this.$storage.get('loginKey')||{};
                 this.account=loginKey.account||'';
+            },
+            showMenuFunc(){
+                this.showMenu = !this.showMenu;
+            },
+            //menu一级菜单,subMenu二级菜单
+            redirect(menu,subMenu){
+                let path = this.concatPath(subMenu);
+                this.$router.push(`/home/${menu.path}/${path.join('/')}`)
+            },
+            concatPath(menu,path = []){
+                if(Object.prototype.toString.call(menu) == "[object Array]"){
+                    this.concatPath(menu.children[0],path)
+                }else if(Object.prototype.toString.call(menu) == "[object Object]"){
+                    if(menu.path){
+                        path.push(menu.path)
+                    }
+                    if(Object.prototype.toString.call(menu.children) == "[object Array]"){
+                        this.concatPath(menu.children[0],path)
+                    }
+                }
+                return path;
             }
         },
         mounted(){
