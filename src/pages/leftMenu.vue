@@ -139,6 +139,8 @@
     import TreeRender from '../components/treeMenu/render.vue';
     import Shrink from '../components/treeMenu/shrink.vue';
     import menu from '../data/menu'
+
+
     export default {
         data(){
             return {
