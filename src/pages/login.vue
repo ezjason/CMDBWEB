@@ -194,9 +194,15 @@
                         ];
                     }
                 }
-            }
+            },
+            async getTime(){
+                let systemTime=await this.$fetch('POST','/atm/common/system/time');
+                let endTime=+new Date();
+                this.$store.commit('setTimeDiff',endTime-systemTime.data.result);
+            },
         },
         mounted(){
+            this.getTime();
             this.validInit();
             let loginInfo=this.$storage.get('login');
             if(loginInfo){

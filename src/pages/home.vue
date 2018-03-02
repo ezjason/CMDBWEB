@@ -38,6 +38,10 @@
             topNav
         },
         async created(){
+            let systemTime=await this.$fetch('POST','/atm/common/system/time');
+            let endTime=+new Date();
+            this.$store.commit('setTimeDiff',endTime-systemTime.data.result);
+
             let data=await this.$fetch('POST','/authorization/function/user/have/list');
             this.$store.commit('setAuthorityKey',{data:data.data});
         },

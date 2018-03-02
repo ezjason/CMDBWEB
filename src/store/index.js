@@ -12,6 +12,7 @@ const state = {
     linkBoxs:{},
     shrink:false,
     loading:false,
+    timeDiff:0,
 };
 const localStoragePlugin = store => {
     store.subscribe((mutation, { todos }) => {
@@ -20,6 +21,9 @@ const localStoragePlugin = store => {
 };
 
 const mutations = {
+    setTimeDiff(state,data){
+        state.timeDiff=data
+    },
     setLoginKey(state,{data}){
         state.loginKey = data;
         storage.set('loginKey',data);

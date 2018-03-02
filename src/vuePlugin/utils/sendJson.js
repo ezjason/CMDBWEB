@@ -1,4 +1,5 @@
 import axios from 'axios'
+import _ from 'underscore'
 import cacheConfig from '../../config/cacheConfig'
 
 let cache={};//缓存响应数据
@@ -16,10 +17,16 @@ service.interceptors.response.use(
     }
 )
 
+function getCheckToken(timeDiff){
+    let newTime=+new Date();
+    let rendom=_.random(0,10000);
+    return `${newTime-timeDiff}_${rendom}`
+}
 
 export default function (url, data, success) {
     let loginKey=this.$store.state.loginKey||{};
     let path=encodeURIComponent(this.$store.state.pathText);
+    let accessToken=this.$encrypt(getCheckToken(this.$store.state.timeDiff));
     if(cache[url]){
         success(cache[url])
     }else{
@@ -36,7 +43,7 @@ export default function (url, data, success) {
             url,
             method: 'POST',
             data: JSON.stringify(data),
-            headers: {'Content-Type': 'application/json','snc-token':loginKey['snc-token'],path},
+            headers: {'Content-Type': 'application/json','snc-token':loginKey['snc-token'],path,accessToken},
         }).then((response)=> {
             if(option[url]){
                 cache[url]=response.data;
