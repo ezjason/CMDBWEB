@@ -14,13 +14,14 @@
                             v-if="showTable"
                             ref="table"
                             :data="table.data"
-                            :stripe="table.prop.stripe"
+                            :stripe="stripe"
                             border="true"
                             style="width: 100%"
                             :max-height="table.prop.height"
                             fit
                             highlight-current-row
                             :show-header="table.prop.showTableTop"
+                            :row-class-name="tableRowClassName"
                             @row-click="rowClick"
                             @row-contextmenu="rowRightClick"
                             @filter-change="filterChange"
@@ -173,6 +174,7 @@
                 choiceRecord: [],
                 getData: null,
                 public: {
+                    rowClassName:'',
                     name: '',
                     url: '',
                     isNew: false,
@@ -205,6 +207,9 @@
             };
         },
         computed: {
+            stripe(){
+                return this.public.rowClassName?false:this.table.prop.stripe;
+            },
             isFixedBtn(){
                 return this.table.data.length > 0&&'right'
             },
@@ -453,6 +458,11 @@
             },
             rowRightClick(row, event){
                 this.$emit('row-contextmenu',row, event)
+            },
+            tableRowClassName(row, index){
+                if(this.public.rowClassName){
+                    return this.public.rowClassName.apply(this,arguments)
+                }
             },
             rowClick(row,e){
                 if(['TD','DIV'].indexOf(e.target.nodeName)>-1){
@@ -729,6 +739,7 @@
                 self.showTable =false;
                 self.getData = null;
                 self.public = {
+                    rowClassName:'',
                     name: '',
                     url: '',
                     isNew: false,

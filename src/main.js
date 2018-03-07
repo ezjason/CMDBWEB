@@ -41,6 +41,14 @@ menu.push({
                     "btnAuthorityCode":'ATM-AUTOMATIC-OPTIONS-PUBLICOPTIONS-FIND-MENU',
                     "type": "table",
                     "url": "/atm/script/info/page/list",
+                    rowClassName(row,index){
+                        if (index === 1) {
+                            return 'gray';
+                        } else if (index === 3) {
+                            return 'gray';
+                        }
+                        return '';
+                    },
                     paramData: {
                         isBuilt: 0
                     },
