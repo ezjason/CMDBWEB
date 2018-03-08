@@ -1,3 +1,6 @@
+# 0.2.4
+- 修复iconfont样式丢失的问题 wangtao 2018/3/8 14:21 
+
 # 0.2.3
 - 修复列表loading遮挡侧滑框的问题 wangtao 2018/3/5 16:08 
 - 新增列表行样式配置rowClassName wangtao 2018/3/7 17:39 
