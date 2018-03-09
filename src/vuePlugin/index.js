@@ -9,7 +9,7 @@ import storage from './utils/storage'
 import treeData from './utils/treeData'
 import timeDiff from './utils/timeDiff'
 import toDate from './utils/toDate'
-import {on,off} from './utils/windowResize'
+import {on,off} from './utils/windowEvent'
 
 let encrypt,publicKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCHi2HAJ0HGFAq9MtpnPrBGHVYToB+B1WdM2rMtGS8Cou8Nzh/gMqFI3S9ZeWoedwUlb6rWxMA9bPqQk8b4MyUN0ByFtW2CccALffzIpLsjikIcrXSzpsI0TwtXjVjMp333Z7CgDYt475c7g6VJX3uzWvzNn4WuKaDelJXO0WZLwwIDAQAB'
 
@@ -33,7 +33,7 @@ export default {
         Vue.prototype.$treeData = treeData;
         Vue.prototype.$timeDiff = timeDiff;
         Vue.prototype.$toDate = toDate;
-        Vue.prototype.$onWindowResize = on;
-        Vue.prototype.$offWindowResize = off;
+        Vue.prototype.$windowEventOn = on;
+        Vue.prototype.$windowEventOff = off;
     },
 }
