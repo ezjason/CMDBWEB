@@ -14,7 +14,7 @@
         background: url("../static/img/logo.png") center no-repeat;
         width: 150px;
         height: 60px;
-        margin-right: 69px;
+        margin-right: 24px;
     }
     .menu-icon{
         float: left;
