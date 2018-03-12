@@ -18,8 +18,13 @@ let eventAction=(type)=>{
         }
     }
 };
-window.onresize=()=>{eventAction('onresize')};
-window.onclick=()=>{eventAction('onclick')};
+window.addEventListener("resize", function(){
+    eventAction('onresize')
+});
+window.addEventListener("onclick", function(){
+    eventAction('onclick')
+});
+
 
 export let on =function (type,fn) {
     let check=listenVue.some(val=>{
