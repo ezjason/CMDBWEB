@@ -49,7 +49,7 @@ export default function (url, data, success) {
                 cache[url]=response.data;
             }
             if(fn[url]){
-                fn[url].forEach(fn=>fn(cache[url]))
+                fn[url].forEach(fn=>fn(cache[url]));
                 delete fn[url]
             }
             let data=response.data;
@@ -61,7 +61,6 @@ export default function (url, data, success) {
                 case 401:
                 case 402:
                     this.$router.push('/');
-                    // location.reload();
                     return;
                 case 403:
                     this.$message.error('当前用户权限不足');
@@ -71,7 +70,9 @@ export default function (url, data, success) {
                     this.$message.error(data.message||'接口异常');
                     break
             }
-            success(data)
+            if(!this._isDestroyed){
+                success(data)
+            }
         }).catch((error)=>{
             console.log(error);
         })
