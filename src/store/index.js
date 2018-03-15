@@ -2,7 +2,7 @@ import storage from '../vuePlugin/utils/storage'
 
 const strict=true;
 const state = {
-    loginKey:storage.get('loginKey'),
+    loginKey:storage.get('loginKey')||{},
     authorityKey:[],
     appendPath:[],
     pathText:'',

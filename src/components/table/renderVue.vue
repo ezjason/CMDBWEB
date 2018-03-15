@@ -207,6 +207,9 @@
             };
         },
         computed: {
+            loginKey(){
+                return this.$store.state.loginKey
+            },
             stripe(){
                 return this.public.rowClassName?false:this.table.prop.stripe;
             },
@@ -632,20 +635,18 @@
             onBlank(param,row) {
                 let self = this;
                 let data=self.paramParse(param.param,row,'blank');
-                data['snc-token']=this.$storage.get('loginKey')['snc-token'];
+                data['snc-token']=this.loginKey['snc-token'];
                 if (!param.url) {
                     return;
                 }
                 let url =  param.url;
-                if (typeof data == 'object') {
-                    let paramArr = [];
-                    for (let key in data) {
-                        let paramItem = key + '=' + encodeURIComponent(data[key]);
-                        paramArr.push(paramItem);
-                    }
-                    let urlParam = paramArr.join('&');
-                    url =  url + '?' + urlParam;
+                let paramArr = [];
+                for (let key in data) {
+                    let paramItem = key + '=' + encodeURIComponent(data[key]);
+                    paramArr.push(paramItem);
                 }
+                let urlParam = paramArr.join('&');
+                url =  url + '?' + urlParam;
                 window.open(url, '_blank');
             },
             onCustom(param,row) {
