@@ -10,6 +10,7 @@ import treeData from './utils/treeData'
 import timeDiff from './utils/timeDiff'
 import toDate from './utils/toDate'
 import {on,off} from './utils/windowEvent'
+import get from './utils/get'
 
 let encrypt,publicKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCHi2HAJ0HGFAq9MtpnPrBGHVYToB+B1WdM2rMtGS8Cou8Nzh/gMqFI3S9ZeWoedwUlb6rWxMA9bPqQk8b4MyUN0ByFtW2CccALffzIpLsjikIcrXSzpsI0TwtXjVjMp333Z7CgDYt475c7g6VJX3uzWvzNn4WuKaDelJXO0WZLwwIDAQAB'
 
@@ -35,5 +36,6 @@ export default {
         Vue.prototype.$toDate = toDate;
         Vue.prototype.$windowEventOn = on;
         Vue.prototype.$windowEventOff = off;
+        Vue.prototype.$get = get;
     },
 }
