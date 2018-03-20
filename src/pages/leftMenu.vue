@@ -265,7 +265,8 @@
                 })
             },
             toggleMenu(){
-                this.$store.commit('toggleShrink')
+                this.$store.commit('toggleShrink');
+                this.$windowTrigger('onresize');
             }
         },
         updated(){
