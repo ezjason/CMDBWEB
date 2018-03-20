@@ -19,10 +19,10 @@ let eventAction=(type)=>{
     }
 };
 window.addEventListener("resize", function(){
-    eventAction('onresize')
+    eventAction('resize')
 });
-window.addEventListener("onclick", function(){
-    eventAction('onclick')
+window.addEventListener("click", function(){
+    eventAction('click')
 });
 
 
