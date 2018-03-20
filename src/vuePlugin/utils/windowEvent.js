@@ -46,3 +46,5 @@ export let off =function (type,fn) {
         }
     });
 };
+
+export let trigger=eventAction;
