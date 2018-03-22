@@ -184,6 +184,7 @@
                 },
                 getSearch:'',
                 table: {
+                    btn:[],
                     columns: [],
                     data: [],
                     prop: {
@@ -218,15 +219,15 @@
             },
             lineBtn(){
                 let self=this;
-                return self.data.btn?self.data.btn.filter(btn=>btn.position==='line'):[]
+                return self.table.btn?self.table.btn.filter(btn=>btn.position==='line'):[]
             },
             bottomBtn(){
                 let self=this;
-                return self.data.btn?self.data.btn.filter(btn=>btn.position==='bottom'):[]
+                return self.table.btn?self.table.btn.filter(btn=>btn.position==='bottom'):[]
             },
             btnList(){
                 let self=this;
-                return self.data.btn?self.data.btn.filter(btn=>!btn.position):[]
+                return self.table.btn?self.table.btn.filter(btn=>!btn.position):[]
             },
             width(){
                 let width=36;
@@ -750,6 +751,7 @@
                 };
                 self.searchParam = '';
                 self.table = {
+                    btn: [],
                     columns: [],
                     data: [],
                     prop: {
@@ -794,6 +796,7 @@
                 self.table.prop.index = model.index;
                 self.table.prop.hideSearch = model.hideSearch;
                 self.table.data = model.records||[];
+                self.table.btn = model.btn||[];
                 let appendParam = {};
                 if (self.data.paramData) {
                     if (typeof self.data.paramData === 'string') {
@@ -820,14 +823,13 @@
                 return data.btnAuthorityCode?this.code.indexOf(data.btnAuthorityCode)>=0:true;
             },
             authorization(){
-                let data=this.data;
                 let newBtn=[];
 
-                this.authValid(data)||(data.url='');
-                for(let item of data.btn){
+                this.authValid(this.data)||(this.public.url='');
+                for(let item of this.table.btn){
                     this.authValid(item)&&(newBtn.push(item))
                 }
-                data.btn=newBtn;
+                this.table.btn=newBtn;
             },
             pagenumChaneg(pagenum) {
                 let self = this;
