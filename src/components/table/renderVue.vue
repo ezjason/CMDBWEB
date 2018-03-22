@@ -776,12 +776,9 @@
                 self.$nextTick(function(){
                     self.showTable=true;
                 });
-
+                self.getModule();
                 // 权限开关
                 self.authorization();
-
-                self.getModule();
-
                 self.getFilters()
             },
             async getModule() {
