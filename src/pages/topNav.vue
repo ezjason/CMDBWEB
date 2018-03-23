@@ -71,61 +71,66 @@
             color: #ffffff;
             cursor: pointer;
         }
-        .menuList{
-            position: absolute;
-            left: 0;
-            top: 60px;
-            box-shadow:0 3px 8px 0px #dadada;
-            background: #fff;
-            z-index:10000;
-            display: flex;
-            .item{
-                box-sizing: content-box;
-                padding:30px 0px 30px 0px;
-            }
-            .item:first-child{
-                padding:30px 0px 30px 45px;
-            }
-            .item:last-child{
-                padding:30px 15px 30px 45px;
-            }
-            li{
-                float: none!important;
-                text-align: left;
-                color: #808080;
-                font-size: 14px;
-                span{
-                    &:hover{
-                        cursor: pointer;
-                        color: #36a9df;
-                    }
-                }
-            }
-            .item{
-                padding-left: 45px;
-                width:100px;
-                text-align: left;
-                li{
-                    line-height:35px;
-                    height: 35px;
-                }
-                h3{
-                    position: relative;
+    }
+    .menuList{
+        position: absolute;
+        left: 0;
+        top: 60px;
+        right:0px;
+        box-shadow:0 3px 8px 0px #dadada;
+        background: #fff;
+        z-index:10000;
+        display: flex;
+        flex-wrap: wrap;
+        .item{
+            box-sizing: content-box;
+            padding:30px 0px 30px 0px;
+        }
+        .item:first-child{
+            padding:30px 0px 30px 45px;
+        }
+        .item:last-child{
+            padding:30px 15px 30px 45px;
+        }
+        li{
+            float: none!important;
+            text-align: left;
+            color: #808080;
+            font-size: 14px;
+            span{
+                &:hover{
+                    cursor: pointer;
                     color: #36a9df;
-                    font-size:15px;
-                    font-weight: 600;
-                    padding:0 0 10px 0;
-                    margin: 0;
-                    border-bottom: 1px solid #e6e6e6;
-                    span{
-                        position: absolute;
-                        left:-34px;
-                        top:-5px;
-                        .iconfont{
-                            font-size: 26px;
-                            font-weight: 500;
-                        }
+                }
+            }
+        }
+        .item{
+            padding-left: 45px;
+            width:100px;
+            text-align: left;
+            li{
+                line-height:35px;
+                height: 35px;
+            }
+            h3{
+                position: relative;
+                color: #36a9df;
+                font-size:15px;
+                font-weight: 600;
+                padding:0 0 10px 0;
+                margin: 0;
+                border-bottom: 1px solid #e6e6e6;
+                span{
+                    position: absolute;
+                    left:-34px;
+                    top:-5px;
+                    .iconfont{
+                        font-size: 26px;
+                        font-weight: 500;
                     }
+                }
+                img{
+                    width: 30px;
                 }
             }
         }
@@ -201,24 +206,9 @@
                 <i class="iconfont icon-logout"></i>
             </div>
         </div>
-        <div class="menu" @mouseenter="showMenuFunc" @mouseleave="showMenuFunc">
+        <div class="menu" @mouseenter="showMenuFunc(true)">
             <i class="iconfont icon-menu2">
             </i>
-            <div class="menuList" v-show="showMenu">
-                <div class="item" v-for="item in menus" v-if="item.isShowInNavMenu" >
-                    <h3>
-                        {{item.name}}
-                        <span>
-                            <i :class="item.navMenuIcon"></i>
-                        </span>
-                    </h3>
-                    <ul>
-                        <li v-if="item.children&&authority(val)" v-for="val in item.children">
-                            <span @click="redirect(item,val)">{{val.name}}</span>
-                        </li>
-                       </ul>
-                </div>
-            </div>
         </div>
         <template v-for="menu in menus">
             <el-submenu v-if="menu.path==='user'" :index="'/home/'+menu.path" class="userInfo">
@@ -231,6 +221,22 @@
                 </router-link>
             </el-menu-item>
         </template>
+        <div class="menuList" v-show="showMenu" @mouseleave="showMenuFunc(false)">
+            <div class="item" v-for="item in menus" v-if="item.isShowInNavMenu" >
+                <h3>
+                    {{item.name}}
+                    <span>
+                            <!--<i :class="item.navMenuIcon"></i>-->
+                            <img :src="requireImg(item.navMenuImg)" alt="">
+                    </span>
+                </h3>
+                <ul>
+                    <li v-if="item.children&&authority(val)" v-for="val in item.children">
+                        <span @click="redirect(item,val)">{{val.name}}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </el-menu>
 </template>
 
@@ -274,6 +280,9 @@
             },
         },
         methods:{
+            requireImg(dir){
+                return dir?require(`../static/img/${dir}.png`):'';
+            },
             authority(menu){
                 return menu.authorityCode?this.code.indexOf(menu.authorityCode)>=0:true
             },
@@ -288,13 +297,14 @@
                 let loginKey=this.$storage.get('loginKey')||{};
                 this.account=loginKey.account||'';
             },
-            showMenuFunc(){
-                this.showMenu = !this.showMenu;
+            showMenuFunc(bool){
+                this.showMenu = bool;
             },
             //menu一级菜单,subMenu二级菜单
             redirect(menu,subMenu){
                 let path = this.concatPath(subMenu);
-                this.$router.push(`/home/${menu.path}/${path.join('/')}`)
+                this.$router.push(`/home/${menu.path}/${path.join('/')}`);
+                this.showMenuFunc(false);
             },
             concatPath(menu,path = []){
                 if(Object.prototype.toString.call(menu) == "[object Array]"){
