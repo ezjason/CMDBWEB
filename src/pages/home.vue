@@ -48,7 +48,9 @@
             diffMenu(menuJson){
                 for(let item of menuJson){
                     let menuItem=this.$findAll(menu,{authorityCode:item.authorityCode});
-                    menuItem[0].name=item.name;
+                    if(menuItem instanceof Array&&menuItem.length){
+                        menuItem[0].name=item.name;
+                    }
                     if(item.children&&item.children instanceof Array&&item.children.length){
                         this.diffMenu(item.children)
                     }
