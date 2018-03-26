@@ -22,7 +22,7 @@
 </style>
 
 <template>
-    <div>
+    <div v-loading="loading" :element-loading-text="loadText">
         <top-nav></top-nav>
         <transition name="router-fade" mode="out-in">
             <router-view></router-view>
@@ -32,20 +32,58 @@
 
 <script type="es6">
     import topNav from './topNav.vue';
+    import menu from '../data/menu'
     import $ from 'jquery'
     module.exports = {
         components: {
             topNav
         },
-        async created(){
-            let systemTime=await this.$fetch('POST','/atm/common/system/time');
-            let endTime=+new Date();
-            window.timeDiff=endTime-systemTime.data.result;
-            this.$store.commit('setTimeDiff',window.timeDiff);
-
-            let data=await this.$fetch('POST','/authorization/function/user/have/list');
-            this.$store.commit('setAuthorityKey',{data:data.data});
+        data(){
+            return {
+                loading:true,
+                loadText:'',
+            }
         },
-        methods: {},
+        methods:{
+            diffMenu(menuJson){
+                for(let item in menuJson){
+                    let menu=this.$findAll(menu,{authorityCode:item.authorityCode});
+                    menu.name=item.name;
+                    if(item.children&&item.children instanceof Array&&item.children.length){
+                        this.diffMenu(menuJson.children)
+                    }
+                }
+            },
+            async getMenuJson(){
+                this.loadText='加载菜单数据中...';
+                try{
+                    let menuJson=await this.$fetch('POST','menu.json');
+                    menuJson instanceof Array&&this.diffMenu(menuJson);
+                }catch (err){
+                    console.log('未找到菜单配置静态配置文件menu.json')
+                }
+            },
+            async getTime(){
+                this.loadText='校对时间中...';
+                let systemTime=await this.$fetch('POST','/atm/common/system/time');
+                let endTime=+new Date();
+                window.timeDiff=endTime-systemTime.data.result;
+                this.$store.commit('setTimeDiff',window.timeDiff);
+            },
+            async getAuthorization(){
+                this.loadText='加载用户权限中...';
+                let data=await this.$fetch('POST','/authorization/function/user/have/list');
+                this.$store.commit('setAuthorityKey',{data:data.data});
+            },
+        },
+        async created(){
+            await this.getMenuJson();
+            await this.getTime();
+            await this.getAuthorization();
+            this.loadText='即将加载完成...';
+            this.$nextTick(()=>{
+                this.loading=false;
+            })
+        },
     }
 </script>
