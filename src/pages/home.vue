@@ -47,10 +47,10 @@
         methods:{
             diffMenu(menuJson){
                 for(let item in menuJson){
-                    let menu=this.$findAll(menu,{authorityCode:item.authorityCode});
-                    menu.name=item.name;
+                    let menuItem=this.$findAll(menu,{authorityCode:item.authorityCode});
+                    menuItem[0].name=item.name;
                     if(item.children&&item.children instanceof Array&&item.children.length){
-                        this.diffMenu(menuJson.children)
+                        this.diffMenu(item.children)
                     }
                 }
             },
