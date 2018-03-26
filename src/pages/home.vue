@@ -57,7 +57,7 @@
             async getMenuJson(){
                 this.loadText='加载菜单数据中...';
                 try{
-                    let menuJson=await this.$fetch('POST','menu.json');
+                    let menuJson=await this.$fetch('GET','menu.json');
                     menuJson instanceof Array&&this.diffMenu(menuJson);
                 }catch (err){
                     console.log('未找到菜单配置静态配置文件menu.json')
