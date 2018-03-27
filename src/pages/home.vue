@@ -33,7 +33,6 @@
 <script type="es6">
     import topNav from './topNav.vue';
     import menu from '../data/menu'
-    import $ from 'jquery'
     module.exports = {
         components: {
             topNav

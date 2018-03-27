@@ -1,10 +1,11 @@
 import storage from '../vuePlugin/utils/storage'
 const App=require('../App.vue');
-const Home=require('../pages/home.vue');
-const Login=require('../pages/login.vue');
-const LeftMenu=require('../pages/leftMenu.vue');
-const RightBody=require('../pages/rightBody.vue');
-const Breadcrumb=require('../pages/Breadcrumb.vue');
+const Home=r => require.ensure([], () => r(require('../pages/home.vue')), 'home');
+const Login=r => require.ensure([], () => r(require('../pages/Login.vue')), 'login');
+const LeftMenu=r => require.ensure([], () => r(require('../pages/LeftMenu.vue')), 'home');
+const RightBody=r => require.ensure([], () => r(require('../pages/RightBody.vue')), 'home');
+const Breadcrumb=r => require.ensure([], () => r(require('../pages/Breadcrumb.vue')), 'home');
+
 
 export default [
     {

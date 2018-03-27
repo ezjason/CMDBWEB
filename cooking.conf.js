@@ -23,6 +23,9 @@ cooking.set({
         port: 8080,//本地访问端口
         publicPath: '/',
         proxy: {
+            '/user':{
+                target:'http://192.168.20.13:10010'
+            },
             '/': {
                  target: 'http://192.168.11.60',
             }
@@ -34,7 +37,7 @@ cooking.set({
     hash: true,
     sourceMap: !isProd,
     minimize: true,
-    chunk: false, // see https://cookingjs.github.io/zh-cn/configuration.html#chunk
+    chunk: true, // see https://cookingjs.github.io/zh-cn/configuration.html#chunk
     postcss: [
         // require('...')
     ],
