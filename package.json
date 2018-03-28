@@ -7,15 +7,10 @@
   ],
   "main": "src/index.js",
   "scripts": {
-    "dev": "cooking watch -p",
-    "dist": "cooking build -p",
-    "deploy": "cooking build --no-color",
-    "build": "cooking build -p -c cooking.build.js",
-    "npm": "npm version patch && cnpm publish && git push && git push origin --tags",
-    "beta": "npm version prerelease && npm publish --tag=beta && git push && git push origin --tags",
-    "docs": "docsify serve docs",
-    "test": "cooking test karma start --single-run",
-    "eslint": "eslint src"
+    "cooking:watch": "cooking watch -p",
+    "cooking:dist": "cooking build -p",
+    "npm@latest": "npm version patch && cnpm publish && git push && git push origin --tags",
+    "npm@beta": "npm version prerelease && npm publish --tag=beta && git push && git push origin --tags"
   },
   "license": "ISC",
   "dependencies": {
