@@ -74,8 +74,9 @@ export default function (url, data, success,error,method='POST') {
                 success(data)
             }
         }).catch((err)=>{
-            console.log(err);
-            error(err)
+            if(error){
+                error(err)
+            }
         })
     }
 

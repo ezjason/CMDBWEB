@@ -2,6 +2,7 @@ var path = require('path');
 var cooking = require('cooking');
 var packageConfig = require('./package.json');
 var CompressionPlugin = require("compression-webpack-plugin");
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 var isProd = process.env.NODE_ENV === 'production';
 
@@ -23,9 +24,6 @@ cooking.set({
         port: 8080,//本地访问端口
         publicPath: '/',
         proxy: {
-            '/user':{
-                target:'http://192.168.20.13:10010'
-            },
             '/': {
                  target: 'http://192.168.11.60',
             }
@@ -47,17 +45,15 @@ cooking.set({
     extractCSS: false,//'[name].[contenthash:7].css'
     externals: {},
     alias: {
-        // 'src': path.join(__dirname, 'src'),
         'vue': 'vue/dist/vue.min',
-        // 'cron': 'src/components/cron/render.vue',
-        // 'vue-gridster': 'vue-gridster/dist/vue-grid-layout.min.js',
     },
     extends: ['vue2', 'less', 'autoprefixer']//lint
 });
 
 var webpackConfig=cooking.resolve();
 
-/*if(isProd){
+if(isProd){
+    webpackConfig.plugins.push(new BundleAnalyzerPlugin());
     webpackConfig.plugins.push(
         new CompressionPlugin({
             asset: "[path].gz[query]",
@@ -67,6 +63,6 @@ var webpackConfig=cooking.resolve();
             minRatio: 0.8
         })
     );
-}*/
+}
 
 module.exports = webpackConfig;

@@ -49,6 +49,7 @@
                     let menuItem=this.$findAll(menu,{authorityCode:item.authorityCode});
                     if(menuItem instanceof Array&&menuItem.length){
                         menuItem[0].name=item.name;
+                        item.icon&&(menuItem[0].icon=item.icon);
                     }
                     if(item.children&&item.children instanceof Array&&item.children.length){
                         this.diffMenu(item.children)
@@ -57,13 +58,12 @@
             },
             async getMenuJson(){
                 this.loadText='加载菜单数据中...';
-                let menuJson;
-                try{
-                    menuJson=await this.$fetch('GET','menu.json');
-                }catch (err){
+                let menuJson=await this.$fetch('GET','menu.json');
+                if(menuJson instanceof Array){
+                    this.diffMenu(menuJson)
+                }else{
                     console.log('未找到菜单配置静态配置文件menu.json')
                 }
-                menuJson instanceof Array&&this.diffMenu(menuJson);
             },
             async getTime(){
                 this.loadText='校对时间中...';

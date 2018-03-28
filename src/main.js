@@ -11,8 +11,9 @@ import menu from './data/menu'
 
 import ModuleRender from "./components/table/renderVue.vue";
 import TabsRender from "./components/tabs/render.vue";
-import test from "./test.vue";
+// import test from "./test.vue";
 
+let test=r=>require.ensure([], () => r(require('./test.vue')), 'test');
 
 
 menu.push({
