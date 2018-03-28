@@ -22,7 +22,7 @@
 </style>
 
 <template>
-    <div v-loading="loading" :element-loading-text="loadText">
+    <div v-loading.fullscreen.lock="loading" :element-loading-text="loadText">
         <top-nav></top-nav>
         <transition name="router-fade" mode="out-in">
             <router-view></router-view>
