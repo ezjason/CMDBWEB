@@ -11,6 +11,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-jiankongmokuai:before { content: "\e649"; }
+
+.icon-yunweimokuai:before { content: "\e64a"; }
+
 .icon-zhaoshangdailifenlei:before { content: "\e6fc"; }
 
 .icon-Group:before { content: "\e647"; }

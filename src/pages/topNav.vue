@@ -77,26 +77,29 @@
         left: 0;
         top: 60px;
         right:0px;
+        padding:0 40px;
         box-shadow:0 3px 8px 0px #dadada;
         background: #fff;
         z-index:10000;
         display: flex;
         flex-wrap: wrap;
         .item{
-            box-sizing: content-box;
-            padding:30px 0px 30px 0px;
+            box-sizing: border-box;
+            padding:30px 0px 30px 70px;
         }
         .item:first-child{
-            padding:30px 0px 30px 45px;
+            width:180px;
+            padding:30px 0px 30px 30px;
         }
         .item:last-child{
-            padding:30px 15px 30px 45px;
+            padding:30px 0px 30px 70px;
         }
         li{
             float: none!important;
             text-align: left;
             color: #808080;
             font-size: 14px;
+            padding-left: 10px;
             span{
                 &:hover{
                     cursor: pointer;
@@ -106,7 +109,7 @@
         }
         .item{
             padding-left: 45px;
-            width:100px;
+            width:220px;
             text-align: left;
             li{
                 line-height:35px;
@@ -129,9 +132,33 @@
                         font-weight: 500;
                     }
                 }
-                img{
-                    width: 30px;
-                }
+            }
+            .baobiaoguanli,.tuoputu,.jiankonggaojing,.xitongguanli,.yunweicaozuo,.ziyuanguanli{
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+                background:url("../static/img/baobiaoguanli.png") no-repeat;
+                background-size:contain;
+            }
+            .tuoputu{
+                background:url("../static/img/tuoputu.png");
+                background-size:contain;
+            }
+            .jiankonggaojing{
+                background:url("../static/img/jiankonggaojing.png") no-repeat;
+                background-size:contain;
+            }
+            .xitongguanli{
+                background:url("../static/img/xitongguanli.png") no-repeat;
+                background-size:contain;
+            }
+            .yunweicaozuo{
+                background:url("../static/img/yunweicaozuo.png") no-repeat;
+                background-size:contain;
+            }
+            .ziyuanguanli{
+                background:url("../static/img/ziyuanguanli.png");
+                background-size:contain;
             }
         }
     }
@@ -226,8 +253,7 @@
                 <h3>
                     {{item.name}}
                     <span>
-                            <!--<i :class="item.navMenuIcon"></i>-->
-                            <img :src="requireImg(item.navMenuImg)" alt="">
+                            <i :class="item.navMenuImg"></i>
                     </span>
                 </h3>
                 <ul>
@@ -280,9 +306,6 @@
             },
         },
         methods:{
-            requireImg(dir){
-                return dir?require(`../static/img/${dir}.png`):'';
-            },
             authority(menu){
                 return menu.authorityCode?this.code.indexOf(menu.authorityCode)>=0:true
             },
