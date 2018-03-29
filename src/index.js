@@ -5,6 +5,7 @@ import vuePlugin from './vuePlugin/index'
 import menu from './data/menu'
 import ModuleRender from "./components/table/renderVue.vue";
 import widgetRender from "./components/table/searchItem.vue";
+import authorization from "./pages/authorization.vue";
 import TabsRender from "./components/tabs/render.vue";
 import api from './config/api'
 import cacheConfig from './config/cacheConfig'
@@ -18,5 +19,6 @@ export {
     ModuleRender,
     TabsRender,
     widgetRender,
-    cacheConfig
+    cacheConfig,
+    authorization
 }

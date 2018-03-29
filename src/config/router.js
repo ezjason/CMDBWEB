@@ -1,11 +1,12 @@
 import storage from '../vuePlugin/utils/storage'
 const App=require('../App.vue');
+
 const Home=r => require.ensure([], () => r(require('../pages/home.vue')), 'home');
 const Login=r => require.ensure([], () => r(require('../pages/Login.vue')), 'login');
 const LeftMenu=r => require.ensure([], () => r(require('../pages/LeftMenu.vue')), 'home');
 const RightBody=r => require.ensure([], () => r(require('../pages/RightBody.vue')), 'home');
 const Breadcrumb=r => require.ensure([], () => r(require('../pages/Breadcrumb.vue')), 'home');
-
+const authorization=r => require.ensure([], () => r(require('../pages/authorization.vue')), 'authorization');
 
 export default [
     {
@@ -19,6 +20,11 @@ export default [
             {
                 path: '/login',
                 component: Login,
+            },
+            {
+                path: '/authorize',
+                name:'authorize',
+                component: authorization,
             },
             {
                 path: '/home',
