@@ -23,7 +23,7 @@ function getCheckToken(timeDiff){
     return `${newTime-timeDiff}_${rendom}`
 }
 
-export default function (url, data, success) {
+export default function (url, data, success,error,method) {
     let loginKey=this.$store.state.loginKey||{};
     let path=encodeURIComponent(this.$store.state.pathText);
     let accessToken=this.$encrypt(getCheckToken(this.$store.state.timeDiff));
@@ -41,7 +41,7 @@ export default function (url, data, success) {
         }
         run&&service({
             url,
-            method: 'POST',
+            method:method||'POST',
             data: JSON.stringify(data),
             headers: {'Content-Type': 'application/json','snc-token':loginKey['snc-token'],path,accessToken},
         }).then((response)=> {
@@ -76,8 +76,10 @@ export default function (url, data, success) {
             if(!this._isDestroyed){
                 success(data)
             }
-        }).catch((error)=>{
-            console.log(error);
+        }).catch((err)=>{
+            if(error){
+                error(err)
+            }
         })
     }
 

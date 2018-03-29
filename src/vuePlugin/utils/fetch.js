@@ -1,9 +1,9 @@
-export default async function (type = 'GET', url = '', data = {}, method = 'fetch') {
+export default async function (type, url = '', data = {}, method = 'fetch') {
 
     let result=null;
     try {
         result=await new Promise( resolve=>{
-            this.$sendJson(url,data,d=>resolve(d),e=>resolve(e))
+            this.$sendJson(url,data,d=>resolve(d),e=>resolve(e),type)
         });
     } catch (error) {
         console.log(error);
