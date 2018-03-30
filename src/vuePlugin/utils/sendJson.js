@@ -66,14 +66,14 @@ export default function (url, data, success,error,method) {
                     this.$message.error('当前用户权限不足');
                     break;
                 case 406:
-                    this.$router.push('authorize');
+                    this.$router.push({name:'authorize'});
                     break;
                 case 500:
                 case 501:
                     this.$message.error(data.message||'接口异常');
                     break
             }
-            if(!this._isDestroyed){
+            if(!this._isDestroyed && data.msgCode == 200){
                 success(data)
             }
         }).catch((err)=>{
