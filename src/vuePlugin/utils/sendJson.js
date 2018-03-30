@@ -73,7 +73,7 @@ export default function (url, data, success,error,method) {
                     this.$message.error(data.message||'接口异常');
                     break
             }
-            if(!this._isDestroyed && data.msgCode == 200){
+            if(!this._isDestroyed){
                 success(data)
             }
         }).catch((err)=>{
