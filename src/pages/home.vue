@@ -68,9 +68,11 @@
             async getTime(){
                 this.loadText='校对时间中...';
                 let systemTime=await this.$fetch('POST','/atm/common/system/time');
-                let endTime=+new Date();
-                window.timeDiff=endTime-systemTime.data.result;
-                this.$store.commit('setTimeDiff',window.timeDiff);
+                if( systemTime.msgCode == 200 ){
+                    let endTime=+new Date();
+                    window.timeDiff=endTime-systemTime.data.result;
+                    this.$store.commit('setTimeDiff',window.timeDiff);
+                }
             },
             async getAuthorization(){
                 this.loadText='加载用户权限中...';
