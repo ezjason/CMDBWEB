@@ -66,7 +66,7 @@ export default function (url, data, success,error,method) {
                     this.$message.error('当前用户权限不足');
                     break;
                 case 406:
-                    this.$router.push('authorize');
+                    this.$router.push({name:'authorize'});
                     break;
                 case 500:
                 case 501:
