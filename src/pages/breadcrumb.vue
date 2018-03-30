@@ -132,11 +132,12 @@
                 path=path.filter(val=>!!val);
                 this.$store.commit('setPathText',path.join('/'))
             },
-            back(){
+            async back(){
                 let self=this;
                 let index=this.showFind.length-2;
                 let item=this.showFind[index];
                 let before=this.showFind[index+1];
+                if(!await this.$pageChange()){return}
                 if(before.back){
                     before.back()
                 }else if(item.click){
@@ -144,8 +145,8 @@
                 }
                 this.$store.commit('popAppendPath');
             },
-            pathClick(item){
-                if(!item.click){
+            async pathClick(item){
+                if(!item.click||!await this.$pageChange()){
                     return
                 }
                 let self=this;

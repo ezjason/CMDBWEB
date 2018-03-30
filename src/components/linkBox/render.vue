@@ -161,7 +161,6 @@
                     }
                 });
                 document.onclick=e=>{
-                    console.log(e);
                     this.allHideLinkBox()
                 };
             },

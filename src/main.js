@@ -36,17 +36,17 @@ menu.push({
 })
 menu.push({
     "name": "首页",
-    "path": "123123",
+    "path": "12312323",
     //下拉导航菜单icon
     navMenuImg:'baobiaoguanli',
     ///下拉导航菜单是否可见
     isShowInNavMenu:true,
-    vue: TabsRender,
-    data: [
+    children: [
         {
             name: '用户操作',
             authorityCode: 'ATM-AUTOMATIC-OPTIONS-PUBLICOPTIONS-MENU',
             vue: ModuleRender,
+            "path": "1231232311",
             data: {
                 "showTitle": true,
                 "showPage": true,
@@ -236,6 +236,7 @@ menu.push({
         {
             name: '内置操作',
             authorityCode: 'ATM-AUTOMATIC-OPTIONS-BUILDINOPTIONS-MENU',
+            "path": "123123231221",
             vue: ModuleRender,
             data: {
                 "showTitle": true,

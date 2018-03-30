@@ -225,7 +225,7 @@
 </style>
 
 <template>
-    <el-menu :router="true" v-if="!!code.length" :default-active="'/home/' + $route.params.id" mode="horizontal" menu-trigger="click" @select="handleSelect">
+    <el-menu :router="true" v-if="!!code.length" :default-active="'/home/' + $route.params.id" mode="horizontal" menu-trigger="click">
         <div class="logo">
         </div>
         <div class="logout">
@@ -310,11 +310,13 @@
                 return menu.authorityCode?this.code.indexOf(menu.authorityCode)>=0:true
             },
             async logout(){
+                if(!await this.$pageChange()){return}
                 await this.$fetch('POST','/user/passport/logout');
+                this.$router.push('/login');
                 this.$storage.set('loginKey',null);
                 this.$storage.set('userInfo',null);
                 this.$store.commit('setAuthorityKey',{data: []});
-                this.$router.push('/');
+
             },
             init(){
                 let loginKey=this.$storage.get('loginKey')||{};

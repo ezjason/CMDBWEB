@@ -251,8 +251,8 @@
 
                 })
             },
-            onSelect(path){
-                if(path==this.key){
+            async onSelect(path){
+                if(path==this.key&&await this.$pageChange()){
 //                    this.resetRightBody();
                     this.$store.commit('resetModule',{data:'rightBody'});
                 }
