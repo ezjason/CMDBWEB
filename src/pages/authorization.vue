@@ -90,6 +90,7 @@
             }
         }
         .label{
+            margin: 0 5px;
             display: inline-block;
             width:auto!important;
             border: none!important;
