@@ -22,6 +22,8 @@
                             highlight-current-row
                             :show-header="table.prop.showTableTop"
                             :row-class-name="tableRowClassName"
+                            :row-key="rowKey"
+                            :current-row-key="currentRowKey"
                             @row-click="rowClick"
                             @row-contextmenu="rowRightClick"
                             @filter-change="filterChange"
@@ -115,7 +117,7 @@
     import _ from 'underscore'
 
     export default {
-        props: ['data', 'param'],
+        props: ['data', 'param','rowKey','currentRowKey'],
         components:{
             search
         },
