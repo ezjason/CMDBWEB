@@ -263,7 +263,7 @@
         },
         methods:{
             async getData() {
-                let {msgCode, data} = await this.$fetch('POST', '/license/getObject', {"params": {}})
+                let {msgCode, data} = await this.$fetch('POST', '/license-center/license/getObject', {"params": {}})
                 if (msgCode == 200) {
                     if (data.authorizeStatus != 200 && !this.isAuthorization) {
                         //不是authorize路径则跳转
@@ -278,7 +278,7 @@
             },
             //激活
             async activate(){
-                let {msgCode, data} = await this.$fetch('POST', '/license/activate', {"params": {activeCode: this.form.license}});
+                let {msgCode, data} = await this.$fetch('POST', '/license-center/license/activate', {"params": {activeCode: this.form.license}});
                 if (msgCode == 200) {
                     if ( this.isAuthorization ) {
                         //authorize路径
