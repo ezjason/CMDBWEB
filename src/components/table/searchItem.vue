@@ -47,7 +47,6 @@
             </el-input>
             <el-tree
                     class="tree"
-                    :key="treeKey"
                     ref="tree"
                     :data="cacheOption"
                     show-checkbox
@@ -88,7 +87,6 @@
         data(){
             return {
                 cache,
-                treeKey:0,
                 filterText:'',
                 treeText:[],
                 pickerOptions: {
@@ -181,7 +179,7 @@
                     }
                 }else{
                     if(check){
-                        this.value.push(node.id);
+                        this.value.push(node[this.treeKey]);
                         this.treeText.push(node.label);
                     }
                 }

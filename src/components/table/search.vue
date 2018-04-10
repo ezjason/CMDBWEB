@@ -82,6 +82,8 @@
                                          :replaceLabel="search.lookup&&search.lookup.replaceLabel"
                                          :replaceValue="search.lookup&&search.lookup.replaceValue"
                                          :type="search.lookup&&search.lookup.type"
+                                         :treeKey="search.lookup&&search.lookup.treeKey"
+                                         :childrenKey="search.lookup&&search.lookup.childrenKey"
                                          :option="search.lookup&&search.lookup.option">
                             </search-item>
                         </el-form-item>
@@ -104,6 +106,8 @@
                                          :replaceLabel="checkTypeLookup.replaceLabel"
                                          :replaceValue="checkTypeLookup.replaceValue"
                                          :type="checkTypeLookup.type"
+                                         :treeKey="checkTypeLookup.treeKey"
+                                         :childrenKey="checkTypeLookup.childrenKey"
                                          :option="checkTypeLookup.option">
                             </search-item>
                         </el-form-item>
