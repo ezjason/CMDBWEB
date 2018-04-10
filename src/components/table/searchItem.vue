@@ -3,6 +3,20 @@
         width: 120px;
     }
 </style>
+<style lang="less">
+    .treePopover{
+        padding: 0;
+        max-width: 200px;
+        max-height: 300px;
+        overflow: auto;
+        .el-input{
+            width: 100%;
+            input{
+                border: none;
+            }
+        }
+    }
+</style>
 
 <template>
     <div class="searchItem">
@@ -25,8 +39,26 @@
                         :picker-options="pickerOptions">
         </el-date-picker>
 
-        <el-input :placeholder="placeholder" v-if="!toType"
-                  size="small" v-model="value"></el-input>
+        <el-popover popper-class="treePopover" v-else-if="toType==='tree'">
+            <el-input :placeholder="placeholder" readonly :value="treeText" slot="reference"></el-input>
+            <el-input
+                    placeholder="输入关键字进行过滤"
+                    v-model="filterText">
+            </el-input>
+            <el-tree
+                    class="tree"
+                    :key="treeKey"
+                    ref="tree"
+                    :data="cacheOption"
+                    show-checkbox
+                    :filter-node-method="filterNode"
+                    @check-change="treeCheckChange"
+                    :default-checked-keys="value"
+                    :node-key="treeKey">
+            </el-tree>
+        </el-popover>
+
+        <el-input :placeholder="placeholder" v-if="!toType||toType==='input'" size="small" v-model="value"></el-input>
     </div>
 </template>
 
@@ -48,12 +80,17 @@
             props:Object,//{filterable}
             replaceLabel:String,
             replaceValue:String,
-            type:String,//DateTime、select、
+            type:String,//DateTime|select|tree|input
             option:Array,//[{label,value}]
+            treeKey:String,
+            childrenKey:String,
         },
         data(){
             return {
                 cache,
+                treeKey:0,
+                filterText:'',
+                treeText:[],
                 pickerOptions: {
                     shortcuts: [{
                         text: '今天',
@@ -79,8 +116,11 @@
             }
         },
         watch:{
-            value(){
-                this.$emit('change',this.value);
+            value(val){
+                this.$emit('change',val);
+            },
+            filterText(val) {
+                this.$refs.tree.filter(val);
             }
         },
         computed:{
@@ -102,7 +142,7 @@
                     let label = this.replaceLabel || 'label';
                     let value = this.replaceValue || 'value';
                     let groupKey = this.groupKey;
-                    list.map( obj => {
+                    this.$recursion(list,this.childrenKey||'children',obj => {
                         obj.value = obj[value];
                         obj.label = obj[label];
                         obj.disabled = false;
@@ -116,7 +156,7 @@
                             }
                             if (!optionsObj[obj[groupKey]]) {
                                 optionsObj[obj[groupKey]] = {
-                                    label:obj.labelTypeName,
+                                    label:obj[groupKey],
                                     children:[]
                                 };
                             }
@@ -129,6 +169,27 @@
                     }
                 }
             },
+            treeCheckChange(node,check){
+                if(!Array.isArray(this.value)){
+                    this.value=[];
+                }
+                let index=this.value.indexOf(node.id);
+                if(index>=0){
+                    if(!check){
+                        this.value.splice(index,1);
+                        this.treeText.splice(index,1);
+                    }
+                }else{
+                    if(check){
+                        this.value.push(node.id);
+                        this.treeText.push(node.label);
+                    }
+                }
+            },
+            filterNode(value, data) {
+                if (!value) return true;
+                return data.label.indexOf(value) !== -1;
+            }
         },
         created(){
             this.lookupTypeChange();
