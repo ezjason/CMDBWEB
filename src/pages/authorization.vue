@@ -280,11 +280,8 @@
             async activate(){
                 let {msgCode, data} = await this.$fetch('POST', '/license-center/license/activate', {"params": {activeCode: this.form.license}});
                 if (msgCode == 200) {
-                    if ( this.isAuthorization ) {
-                        //authorize路径
-                        await this.getData();
-                        data.result?this.$message.success('激活成功'):this.$message.success(data.message);
-                    }
+                    await this.getData();
+                    data.result?this.$message.success('激活成功'):this.$message.error(data.message);
                 }
             },
             serial(serials,field){

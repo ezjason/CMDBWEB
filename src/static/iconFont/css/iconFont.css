@@ -10,6 +10,19 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.icon-xunjiananquan:before { content: "\e605"; }
+
+.icon-xunjianrizhi:before { content: "\e718"; }
+
+.icon-xunjianpeizhi:before { content: "\e62b"; }
+
+.icon-xunjianxingneng:before { content: "\e653"; }
+
+.icon-xunjianqita:before { content: "\e66b"; }
+
+.icon-xunjianwangluo:before { content: "\e6b3"; }
+
+.icon-xunjianchaoshi:before { content: "\e758"; }
 
 .icon-jiankongmokuai:before { content: "\e649"; }
 
