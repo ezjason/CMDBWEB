@@ -81,9 +81,9 @@
             },
         },
         async created(){
+            await this.getMenuJson();
             await this.getTime();
             await this.getAuthorization();
-            this.getMenuJson();
             this.loadText='即将加载完成...';
             this.$nextTick(()=>{
                 this.loading=false;
