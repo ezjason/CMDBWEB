@@ -11,6 +11,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-xunjianchaoshi:before { content: "\e758"; }
+
 .icon-jiankongmokuai:before { content: "\e649"; }
 
 .icon-yunweimokuai:before { content: "\e64a"; }
