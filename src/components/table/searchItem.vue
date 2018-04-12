@@ -48,6 +48,7 @@
             <el-tree
                     class="tree"
                     ref="tree"
+                    :key="treeDomKey"
                     :data="cacheOption"
                     show-checkbox
                     :filter-node-method="filterNode"
@@ -88,6 +89,7 @@
             return {
                 cache,
                 filterText:'',
+                treeDomKey:0,
                 treeText:[],
                 pickerOptions: {
                     shortcuts: [{
@@ -115,6 +117,10 @@
         },
         watch:{
             value(val){
+                if(this.toType==='tree'&&val===''){
+                    this.treeText=[];
+                    this.treeDomKey++
+                }
                 this.$emit('change',val);
             },
             filterText(val) {
