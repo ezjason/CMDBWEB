@@ -171,7 +171,7 @@
                 if(!Array.isArray(this.value)){
                     this.value=[];
                 }
-                let index=this.value.indexOf(node.id);
+                let index=this.value.indexOf(node[this.treeKey]);
                 if(index>=0){
                     if(!check){
                         this.value.splice(index,1);
