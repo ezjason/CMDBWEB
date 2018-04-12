@@ -93,7 +93,6 @@
 </template>
 
 <script>
-    import packageConfig from '../../package.json'
     import api from '../config/api'
 
     module.exports = {
@@ -121,12 +120,11 @@
                         { min: 5, max: 64, message: '密码长度只能为5-64个字符'},
                     ],
                 },
-                packageConfig
             }
         },
         computed:{
             version(){
-                return window.timerVersion||packageConfig.version
+                return window.timerVersion
             },
             code(){
                 return this.$store.state.authorityKey
