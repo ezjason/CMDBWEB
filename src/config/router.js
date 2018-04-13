@@ -1,5 +1,5 @@
 import storage from '../vuePlugin/utils/storage'
-const App=r => require.ensure([], () => r(require('../pages/App.vue')), 'appbox');
+const App=r => require.ensure([], () => r(require('../App.vue')), 'appbox');
 const Home=r => require.ensure([], () => r(require('../pages/home.vue')), 'home');
 const Login=r => require.ensure([], () => r(require('../pages/login.vue')), 'login');
 const LeftMenu=r => require.ensure([], () => r(require('../pages/leftMenu.vue')), 'home');
