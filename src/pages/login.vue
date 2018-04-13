@@ -134,9 +134,6 @@
         },
         methods:{
             async login(){
-                //登录服务未做license过滤，临时方案
-                let { msgCode }=await this.$fetch('POST','/atm/common/system/time');
-                if(msgCode != 200) return
                 let self=this;
                 let valid=await new Promise(resolve=>{
                     self.$refs.form.validate(v=>resolve(v))
