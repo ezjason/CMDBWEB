@@ -136,11 +136,12 @@ menu.push({
                             "noSearch": false,
                             "nosort": [],
                             "lookup": {
-                                type: 'Select',
-                                remote: '/atm/common/label/page/list',
-                                replaceLabel: 'labelTitle',
-                                replaceValue: 'labelTitle',
-                                groupKey: 'labelTypeName',
+                                type: 'tree',
+                                remote: '/resource/resource/getResourceTree',
+                                replaceLabel: 'name',
+                                replaceValue: 'id',
+                                treeKey: 'id',
+                                childrenKey:'children',
                                 props: {
                                     filterable: true,
                                 },
