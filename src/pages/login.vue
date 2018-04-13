@@ -194,7 +194,7 @@
                 }
             },
             async getTime(){
-                let systemTime=await this.$fetch('POST','/atm/common/system/time');
+                let systemTime=await this.$fetch('POST','/user/common/system/time');
                 if( systemTime.msgCode == 200 ){
                     let endTime=+new Date();
                     this.$store.commit('setTimeDiff',endTime-systemTime.data.result);
