@@ -786,9 +786,6 @@
             async getModule() {
                 let self = this;
                 let model=self.data;
-                if(model instanceof Function){
-                    model=await self.data()();
-                }
                 for (let key in self.public) {
                     self.public[key] = model[key];
                 }
