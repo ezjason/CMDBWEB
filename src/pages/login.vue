@@ -132,9 +132,6 @@
         },
         methods:{
             async login(){
-                //登录服务未做license过滤，临时方案
-                let { msgCode }=await this.$fetch('POST','/atm/common/system/time');
-                if(msgCode != 200) return
                 let self=this;
                 let valid=await new Promise(resolve=>{
                     self.$refs.form.validate(v=>resolve(v))
@@ -197,7 +194,7 @@
                 }
             },
             async getTime(){
-                let systemTime=await this.$fetch('POST','/atm/common/system/time');
+                let systemTime=await this.$fetch('POST','/user/common/system/time');
                 if( systemTime.msgCode == 200 ){
                     let endTime=+new Date();
                     this.$store.commit('setTimeDiff',endTime-systemTime.data.result);
