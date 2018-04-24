@@ -25,7 +25,7 @@ cooking.set({
         publicPath: '/',
         proxy: {
             '/': {
-                 target: 'http://192.168.11.60',
+                 target: 'http://192.168.32.17',
             }
         }
     },

@@ -44,7 +44,7 @@
                                          :column-key="column.colkey"
                                          :filters="getFilterItem(column)"
                                          :filter-multiple="getFilterMultiple(column)"
-                                         show-overflow-tooltip="true">
+                                         :show-overflow-tooltip="column.vue?false:true">
                             <template scope="scope">
                                 <a v-if="column.link" @click.stop="linkClick(scope,column)" v-html='formatterCol(scope,column)'></a>
                                 <component v-else-if="column.vue"
