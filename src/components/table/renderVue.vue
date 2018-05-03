@@ -495,7 +495,7 @@
             async onFuncBtns(param,row) {
                 let self = this;
                 let types=[];
-                this.linkBox.allHide();
+                // this.linkBox.allHide();
                 if(typeof param.type === 'string'){
                     types=[param.type]
                 }else if(param.type instanceof Array){
