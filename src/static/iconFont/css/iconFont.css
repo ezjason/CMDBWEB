@@ -10,6 +10,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.icon-gongzuotai:before { content: "\e66d"; }
+
 .icon-xunjiananquan:before { content: "\e605"; }
 
 .icon-xunjianrizhi:before { content: "\e718"; }
