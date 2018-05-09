@@ -1,3 +1,8 @@
+# 0.2.32
+- 添加工作台icon dujiahao 2018/5/4 14:21
+- 增加http，数据集，SQL，报表，新建页面 的icon xiekangyan 2018/5/4 16:33
+- 增加数据集按钮对应的icon配置 xiekangyan 2018/5/4 16:43
+
 # 0.2.31
 - 修复当列表处于linkbox中点击按钮意外关闭的问题 wangtao 2018/5/3 17:07
 
