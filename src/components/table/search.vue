@@ -46,14 +46,8 @@
             display: block;
         }
         .topSearch {
-            /*position: absolute;
-                right: 0;
-                top:0;*/
             float: right;
             margin-top: -5px;
-        }
-        .reset {
-            margin: 0;
         }
     }
     .bottom {
