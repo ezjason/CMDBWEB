@@ -3,7 +3,7 @@
 </style>
 
 <template>
-    <div class="tableList" v-loading="loading">
+    <div class="tableContent" v-loading="loading">
         <transition-group name="table" tag="div">
             <div class="main-page" :key="1" v-show="!isShowMinorPage">
                 <search :hide="table.prop.hideSearch" :clumns="searchColumn" :btns="btnList" @search="onSearch" @btnClick="onFuncBtns">

@@ -5,8 +5,8 @@
   "keywords": [
     "frame"
   ],
-  "publishConfig" : {
-    "registry" : "http://npmregistry.one/"
+  "publishConfig": {
+    "registry": "http://npmregistry.one/"
   },
   "main": "src/index.js",
   "scripts": {

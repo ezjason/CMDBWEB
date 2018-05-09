@@ -5,9 +5,7 @@ export default function get(getFn,defultValue){
         try{
             result=getFn()
         }
-        catch(e){
-            console.log(e)
-        }
+        catch(e){}
     }
     if(result === undefined){
         result=defultValue;
