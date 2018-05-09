@@ -5,6 +5,9 @@
   "keywords": [
     "frame"
   ],
+  "publishConfig" : {
+    "registry" : "http://npmregistry.one/"
+  },
   "main": "src/index.js",
   "scripts": {
     "cooking:watch": "cooking watch -p",
