@@ -2,12 +2,12 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import VueRouter from 'vue-router';
 import store from './store';
-import ElementUI from 'element-ui'
+import ElementUI from 'element-ui';
 
-import './config/globalConfig'
-import routes from './config/router'
-import vuePlugin from './vuePlugin/index'
-import menu from './data/menu'
+import './config/globalConfig';
+import routes from './config/router';
+import vuePlugin from './vuePlugin/index';
+import menu from './data/menu';
 
 import ModuleRender from "./components/table/renderVue.vue";
 import TabsRender from "./components/tabs/render.vue";
