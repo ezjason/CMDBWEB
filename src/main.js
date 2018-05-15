@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import Vue from 'vue';//切换分支测试
 import Vuex from 'vuex';
 import VueRouter from 'vue-router';
 import store from './store';

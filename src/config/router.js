@@ -30,6 +30,7 @@ export default [
                 component: Home,
                 beforeEnter(to, from, next){
                     let loginKey=storage.get('loginKey');
+                    console.log(loginKey)
                     if(loginKey){
                         next()
                     }else{

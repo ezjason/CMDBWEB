@@ -38,11 +38,35 @@
     #login .el-form-item__error{
         margin-left: 22px;
     }
+    .el-input .el-input__inner{
+        width:100%;
+        height:42px;
+        margin-top: 25px;
+        padding:0 15px !important;
+        border-radius: 6px !important;
+        background:rgba(45,45,45,.15);
+        box-shadow:0 2px 3px 0 rgba(0,0,0,.1) inset;
+        font-size:14px;
+        color:#fff !important;
+        text-shadow:0 1px 2px rgba(0,0,0,.1);
+        -webkit-transition:all .2s;
+    }
+    .slide-fade-enter-active {
+        transition: all .3s ease;
+    }
+    .slide-fade-leave-active {
+        transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
+    .slide-fade-enter, .slide-fade-leave-to
+        /* .slide-fade-leave-active for below version 2.1.8 */ {
+        transform: translateX(10px);
+        opacity: 0;
+    }
 </style>
 
 <template>
     <div id="login">
-        <div class="col-md-12 blockBanner">
+        <!--<div class="col-md-12 blockBanner">
             <div class="col-md-4 col-md-offset-4">
                 <div class="logo"></div>
                 <div class="logoTitle">
@@ -53,24 +77,30 @@
             <div class="el-2"></div>
             <div class="el-3"></div>
             <div class="el-4"></div>
-        </div>
+        </div>-->
         <el-col :offset="9" :span="6">
             <el-form ref="form" :model="form">
+                <el-form-item></el-form-item>
+                <el-form-item></el-form-item>
+                <el-form-item></el-form-item>
+                <el-form-item></el-form-item>
+                <el-form-item></el-form-item>
+                <el-form-item><h1 style="color: #ffffff;text-align: center">Login</h1></el-form-item>
                 <el-form-item></el-form-item>
                 <el-form-item prop="account"
                               :rules="rules.name">
                     <el-input placeholder="请输入账号" v-model="form.account">
-                        <template slot="prepend"><i class="fa fa-user"></i></template>
+                        <!--<template slot="prepend"><i class="fa fa-user"></i></template>-->
                     </el-input>
                 </el-form-item>
                 <el-form-item prop="password"
                               :rules="rules.pwd">
                     <el-input  type="password" :maxlength="64" placeholder="请输入密码"  auto-complete="off" v-model="form.password">
-                        <template slot="prepend"><i class="fa fa-lock"></i></template>
+                        <!--<template slot="prepend"><i class="fa fa-lock"></i></template>-->
                     </el-input>
                 </el-form-item>
 
-                <el-form-item class="validCode"
+               <!-- <el-form-item class="validCode"
                               prop="code"
                               :rules="rules.code">
                     <template v-if="api.loginValidateCode">
@@ -80,7 +110,7 @@
                         <img @click="getValidateCode" :src="Validate.code" alt="验证码" title="验证码"/>
                     </template>
                     <el-checkbox v-model="checked">记住密码</el-checkbox>
-                </el-form-item>
+                </el-form-item>-->
                 <el-form-item>
                     <el-button class="login" type="primary" @click="login" :loading="loading" onclick="return false" native-type="submit">登录</el-button>
                 </el-form-item>
@@ -89,6 +119,21 @@
                 </div>
             </el-form>
         </el-col>
+        <div class ="backImg">
+            <transition name="slide-fade">
+                <ul id="supersized" v-if="show">
+                    <li class="slide0">
+                        <img src="../static/img/1.jpg">
+                    </li>
+                    <li class="slide1">
+                        <img src="../static/img/2.jpg">
+                    </li>
+                    <li class="slide2">
+                        <img src="../static/img/3.jpg">
+                    </li>
+                </ul>
+            </transition>
+        </div>
     </div>
 </template>
 
@@ -104,6 +149,7 @@
                     password:'',
                     code:'',
                 },
+                show:true,
                 checked:false,
                 loading:false,
                 Validate:{
@@ -202,9 +248,9 @@
             },
         },
         mounted(){
-            this.getTime();
+//            this.getTime();
             this.validInit();
-            let loginInfo=this.$storage.get('login');
+            let loginInfo=this.$storage.get('login');//获取localstorage
             if(loginInfo){
                 this.form=loginInfo;
                 this.checked=true;
