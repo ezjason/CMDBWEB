@@ -25,6 +25,7 @@ function getCheckToken(timeDiff){
 
 export default function (url, data, success,error,method) {
     let loginKey=this.$store.state.loginKey||{};
+
     let path=encodeURIComponent(this.$store.state.pathText);
     let accessToken=this.$encrypt(getCheckToken(this.$store.state.timeDiff));
     if(cache[url]){

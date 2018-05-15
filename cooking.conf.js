@@ -21,17 +21,20 @@ cooking.set({
         }
     ],
     devServer: {
-        port: 8080,//本地访问端口
+        port: 8081,//本地访问端口
+        enable: true,
         publicPath: '/',
-        proxy: {
+        hostname:'localhost',
+        protocol:'http:',
+        /*proxy: {
             '/': {
-                 target: 'http://192.168.32.17',
+                 target: 'http://192.168.20.49',
             }
-        }
+        }*/
     },
 
     // production
-    clean: true,
+    clean: true,//打包清理dist目录
     hash: true,
     sourceMap: !isProd,
     minimize: true,
