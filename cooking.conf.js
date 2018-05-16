@@ -21,10 +21,10 @@ cooking.set({
         }
     ],
     devServer: {
-        port: 8081,//本地访问端口
+        port: 9090,//本地访问端口
         enable: true,
         publicPath: '/',
-        hostname:'localhost',
+        hostname:'192.168.23.1',
         protocol:'http:',
         /*proxy: {
             '/': {
